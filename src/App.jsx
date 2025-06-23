@@ -3,7 +3,10 @@ import NewExpanse from './newExpanse'
 import ExpansesList from './ExpansesList'
 import './App.css'
 
-
+function limpaLocal(){
+  localStorage.setItem("data","")
+}
+// limpaLocal()
 if(!localStorage.getItem("data")){
   initializeData()
 }
