@@ -18,8 +18,8 @@ export default function NewExpanse({data, setData, updateDataStorage}){
             <option value="1">Lazer</option>
             <option value="2">Inesperados</option>
             </select> <br />
-            <label><input type="radio" name="tipo" id="fixo" onChange={(e)=>{changeObject("tipo",0)}} /> Fixo </label> <br />
-            <label><input type="radio" name="tipo" id="variavel" onChange={(e)=>{changeObject("tipo",1)}} /> Variável </label> <br />
+            <label><input type="radio" name="tipo" id="fixo" onChange={()=>{changeObject("tipo",0)}} checked/> Fixo </label> <br />
+            <label><input type="radio" name="tipo" id="variavel" onChange={()=>{changeObject("tipo",1)}} /> Variável </label> <br />
             <button>submit</button>
         </form>
         </>
