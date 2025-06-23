@@ -1,7 +1,11 @@
-export default function Expanse({nome, valor}){
+export default function Expanse({nome, valor,descricao,categoria,data}){
     return(
         <li>
-            <h1>{nome} - R$ {parseInt(valor).toFixed(2)}</h1>
+            <div className="NamePrice">
+                <p>{nome}</p> <p>R$ {parseInt(valor).toFixed(2)}</p>
+            </div>
+            <div>{descricao}</div>
+            <div>{categoria} | {data}</div>
         </li>
     )
 }
