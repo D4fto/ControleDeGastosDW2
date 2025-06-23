@@ -6,7 +6,7 @@ import './App.css'
 function limpaLocal(){
   localStorage.setItem("data","")
 }
-// limpaLocal()
+limpaLocal()
 if(!localStorage.getItem("data")){
   initializeData()
 }
@@ -16,7 +16,8 @@ function initializeData(){
     expanses: {
       fixo: [],
       variavel: []
-    }
+    },
+    categorias: ["Essenciais","Lazer","Inesperado", "shit", "FDS"]
   }
   localStorage.setItem("data", JSON.stringify(data))
 }

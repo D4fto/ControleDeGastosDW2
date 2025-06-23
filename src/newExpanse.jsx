@@ -18,9 +18,7 @@ export default function NewExpanse({data, setData, updateDataStorage}){
             <input onChange={(e)=>{changeObject("data",e.target.value)}} id="data" type="date" /> <br />
             <textarea onChange={(e)=>{changeObject("descricao",e.target.value)}} name="" id="descricao" placeholder="Descrição legal"></textarea> <br />
             <select onChange={(e)=>{changeObject("categoria",e.target.value)}} name="" id="categoria">
-            <option value="0">Essenciais</option>
-            <option value="1">Lazer</option>
-            <option value="2">Inesperados</option>
+            {data.categorias.map((e)=>{return <option value={e}>{e}</option>})}
             </select> <br />
             <label><input type="radio" name="tipo" id="fixo" onChange={()=>{changeObject("tipo",0)}} /> Fixo </label> <br />
             <label><input type="radio" name="tipo" id="variavel" onChange={()=>{changeObject("tipo",1)}} /> Variável </label> <br />
