@@ -5,7 +5,7 @@ export default function ExpansesList({data}){
         <>
         <ul>
             {data.expanses.map((e)=>{
-                return <Expanse nome={e.nome} valor={e.valor}/>
+                return <Expanse data={e.data} categoria={e.categoria} descricao={e.descricao} nome={e.nome} valor={e.valor}/>
             })}
         </ul>
         </>
