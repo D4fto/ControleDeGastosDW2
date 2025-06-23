@@ -10,7 +10,10 @@ if(!localStorage.getItem("data")){
 
 function initializeData(){
   const data = {
-    expanses: []
+    expanses: {
+      fixo: [],
+      variavel: []
+    }
   }
   localStorage.setItem("data", JSON.stringify(data))
 }

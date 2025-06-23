@@ -2,7 +2,11 @@ export default function NewExpanse({data, setData, updateDataStorage}){
     function send(event){
         event.preventDefault()
         const newData = {...data}
-        newData.expanses.push({...newExpanse})
+        if(newExpanse.tipo){
+            newData.expanses.variavel.push({...newExpanse})
+        }else{
+            newData.expanses.fixo.push({...newExpanse})
+        }
         setData(newData)
         updateDataStorage(newData)
     }
