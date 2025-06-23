@@ -4,7 +4,6 @@ import ExpansesList from './ExpansesList'
 import './App.css'
 
 
-
 if(!localStorage.getItem("data")){
   initializeData()
 }
