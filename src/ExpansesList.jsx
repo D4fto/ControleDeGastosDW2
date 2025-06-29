@@ -56,6 +56,7 @@ export default function ExpansesList({data}){
     console.log(data)
     return(
         <div className="ListaDespesas">
+            <h1>Despesas</h1>
             <h1>Fixo</h1>
             <ul>
                 {
