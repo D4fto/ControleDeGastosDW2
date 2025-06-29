@@ -133,10 +133,10 @@ function App() {
   useEffect(()=>{
     updateDataStorage(data)
   },[data])
-  // if(!searchBTC){
-  //   bitcoin(setvalorBit)
-  //   searchBTC = setInterval(()=>{bitcoin(setvalorBit)},60000)
-  // }
+  if(!searchBTC){
+    bitcoin(setvalorBit)
+    searchBTC = setInterval(()=>{bitcoin(setvalorBit)},60000)
+  }
   return (
     <>
     <NewExpanse data={data} setData={setData}/>
