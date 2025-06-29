@@ -125,7 +125,14 @@ function initializeData(){
 function updateDataStorage(data){
   localStorage.setItem("data", JSON.stringify(data))
 }
-
+{/* <NewExpanse data={data} setData={setData}/>
+    <div>
+      <PopUpButton title={"Categoria"} icon={<i className="bi bi-bookmark"></i>} PopUp={NewCategory} props={{data: data, setData: setData}}/>
+    </div>
+    <div>
+      <PopUpButton title={"Grupo"} icon={<i className="bi bi-folder-plus"></i>} PopUp={NewGroup} props={{data: data, setData: setData}}/>
+    </div> */}
+    {/* <p>Preço do BitCoin brasileiro: R$ {valorBit}</p> */}
 function App() {
   const [valorBit, setvalorBit] = useState(0)
   const [data, setData] = useState(()=>JSON.parse(localStorage.getItem("data")))
@@ -138,15 +145,17 @@ function App() {
   }
   return (
     <>
-    <NewExpanse data={data} setData={setData}/>
+    <nav className='MenuHorizontal'>
+      <h1 className='Titulo'>Investec</h1>
+      <div>
+        <button>Despesas</button>
+        <button>Dashboard</button>
+      </div>
+    </nav>
     <div>
-      <PopUpButton title={"Categoria"} icon={<i className="bi bi-bookmark"></i>} PopUp={NewCategory} props={{data: data, setData: setData}}/>
+      <ExpansesList data={data}/>
+      <main></main>
     </div>
-    <div>
-      <PopUpButton title={"Grupo"} icon={<i className="bi bi-folder-plus"></i>} PopUp={NewGroup} props={{data: data, setData: setData}}/>
-    </div>
-    <ExpansesList data={data}/>
-    <p>Preço do BitCoin brasileiro: R$ {valorBit}</p>
     </>
   )
 }
