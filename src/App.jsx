@@ -134,6 +134,7 @@ function updateDataStorage(data){
     </div> */}
     {/* <p>Preço do BitCoin brasileiro: R$ {valorBit}</p> */}
 function App() {
+  const [variavel,setvariavel] = useState("dashboard")
   const [valorBit, setvalorBit] = useState(0)
   const [data, setData] = useState(()=>JSON.parse(localStorage.getItem("data")))
   useEffect(()=>{
@@ -148,13 +149,29 @@ function App() {
     <nav className='MenuHorizontal'>
       <h1 className='Titulo'>Investec</h1>
       <div>
-        <button>Despesas</button>
-        <button>Dashboard</button>
+        <button onClick={()=>setvariavel("despesas")}>Despesas</button>
+        <button onClick={()=>setvariavel("dashboard")}>Dashboard</button>
       </div>
     </nav>
     <div>
       <ExpansesList data={data}/>
-      <main></main>
+      <main>
+        {variavel === "dashboard"&&<></>}
+        {variavel === "despesas"&&<>
+        <div>
+          <PopUpButton title={"Categoria"} icon={<i className="bi bi-bookmark"></i>} PopUp={NewCategory} props={{data: data, setData: setData}}/>
+        </div>
+        <div>
+          <PopUpButton title={"Grupo"} icon={<i className="bi bi-folder-plus"></i>} PopUp={NewGroup} props={{data: data, setData: setData}}/>
+        </div>
+        <div>
+          <button onClick={()=>setvariavel("novadespesa")}>Nova categoria</button>
+        </div>
+        <p>Preço do BitCoin brasileiro: R$ {valorBit}</p>
+      </>}
+        {variavel === "novadespesa"&&<><NewExpanse data={data} setData={setData}/></>}
+        {variavel === "editardespesa"&&<></>}
+      </main>
     </div>
     </>
   )
