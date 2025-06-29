@@ -4,7 +4,6 @@ import ExpansesList from './ExpansesList'
 import	NewCategory from './NewCategory'
 import PopUpButton from './PopUpButton'
 import NewGroup from './NewGroup'
-import ChooseGroup from './ChooseGroup'
 import './App.css'
 import bitcoin from './bitcoin'
 
