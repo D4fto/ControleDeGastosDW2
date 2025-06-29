@@ -2,11 +2,11 @@ import { useState } from "react"
 import ChooseGroup from "./ChooseGroup"
 import PopUpButton from "./PopUpButton"
 
-function findGroupToAdd(address, groups, id){
+function findGroupToAdd(address, groups, id, value){
     for (const element of groups) {
         if(element.nome==address[0]){
             address.shift()
-            addIdToGroup(address, element, id)
+            addIdToGroup(address, element, id, value)
             return
         }
     }
@@ -14,12 +14,13 @@ function findGroupToAdd(address, groups, id){
     console.error(`Grupo não encontrado`)
 
 }
-function addIdToGroup(address, group, id){
+function addIdToGroup(address, group, id, value){
+    group.valor+=value
     if(!address.length){
         group.children.expanses.push(id)
         return
     }
-    findGroupToAdd(address, group.children.groups, id)
+    findGroupToAdd(address, group.children.groups, id, value)
 }
 export default function NewExpanse({data, setData}){
     const [group, setGroup] = useState("/")
@@ -35,7 +36,7 @@ export default function NewExpanse({data, setData}){
         if(group==="/"){
             newData.expanses.inRoot.push(type+id)
         }else{
-            findGroupToAdd(group.substring(1,group.length-1).split("/"), newData.groups[type], id)
+            findGroupToAdd(group.substring(1,group.length-1).split("/"), newData.groups[type], id, parseInt(newExpanse.valor))
         }
         setData(newData)
     }
@@ -48,7 +49,7 @@ export default function NewExpanse({data, setData}){
             <textarea onChange={(e)=>{changeObject("descricao",e.target.value)}} name="" id="descricao" placeholder="Descrição legal"></textarea> <br />
             <PopUpButton title={group} PopUp={ChooseGroup} props={{data: data, setData: setData, type:type, group: group, setGroup: setGroup}}/><br/>
             <select onChange={(e)=>{changeObject("categoria",e.target.value)}} name="" id="categoria">
-            {data.categories.map((e)=>{return <option value={e}>{e}</option>})}
+            {data.categories.map((e, k)=>{return <option key={k} value={e}>{e}</option>})}
             </select> <br />
             <label><input type="radio" name="tipo" id="fixo" onChange={()=>{setType("fixo")}} checked={type === "fixo"}/> Fixo </label> <br />
             <label><input type="radio" name="tipo" id="variavel" onChange={()=>{setType("variavel")}} checked={type === "variavel"}/> Variável </label> <br />

@@ -13,11 +13,11 @@ export default function ChooseGroup({data, setControl, type, group, setGroup}){
         return(arr)
     }
     return(<div>
-        <button onClick={()=>{setControl(false)}}><i class="bi bi-x"></i></button>
+        <button onClick={()=>{setControl(false)}}><i className="bi bi-x"></i></button>
         <h1>Escolha o local - {type}</h1>
         <div className="GroupList">
             <GroupOfList name={"/"}/>
-            {createGroupList([], data.groups[type], '/').map((e)=><GroupOfList name={e}/>)}
+            {createGroupList([], data.groups[type], '/').map((e, k)=><GroupOfList key={k} name={e}/>)}
             <button type="button">{preview}</button>
             <button type="button" onClick={()=>{
                 setGroup(preview)
