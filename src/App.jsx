@@ -10,7 +10,7 @@ import bitcoin from './bitcoin'
 function limpaLocal(){
   localStorage.setItem("data","")
 }
-limpaLocal()
+// limpaLocal()
 if(!localStorage.getItem("data")){
   initializeData()
 }
