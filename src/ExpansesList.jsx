@@ -55,20 +55,21 @@ export default function ExpansesList({data}){
     
     console.log(data)
     return(
-        <>
-        <h1>Fixo</h1>
-        <ul>
+        <div className="ListaDespesas">
+            <h1>Despesas</h1>
+            <h1>Fixo</h1>
+            <ul>
+                {
+                createExpansesList2(handleInRoot(data.expanses.inRoot, "fixo"), data.expanses.fixo, data.groups.fixo)
+                }
+            </ul>
+            <h1>Variável</h1>
+            <ul>
             {
-            createExpansesList2(handleInRoot(data.expanses.inRoot, "fixo"), data.expanses.fixo, data.groups.fixo)
-            }
-        </ul>
-        <h1>Variável</h1>
-        <ul>
-        {
-            createExpansesList2(handleInRoot(data.expanses.inRoot, "variavel"), data.expanses.variavel, data.groups.variavel)
-            }
-        </ul>
-        </>
+                createExpansesList2(handleInRoot(data.expanses.inRoot, "variavel"), data.expanses.variavel, data.groups.variavel)
+                }
+            </ul>
+        </div>
     )
 
 }
