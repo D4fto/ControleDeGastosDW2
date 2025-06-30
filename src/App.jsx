@@ -7,10 +7,12 @@ import NewGroup from './NewGroup'
 import './App.css'
 import bitcoin from './bitcoin'
 
+
+
 function limpaLocal(){
   localStorage.setItem("data","")
 }
-// limpaLocal()
+limpaLocal()
 if(!localStorage.getItem("data")){
   initializeData()
 }
@@ -167,7 +169,7 @@ function App() {
           <PopUpButton title={"Grupo"} icon={<i className="bi bi-folder-plus"></i>} PopUp={NewGroup} props={{data: data, setData: setData}}/>
         </div>
         <div>
-          <button onClick={()=>setvariavel("novadespesa")}>Nova categoria</button>
+          <button onClick={()=>setvariavel("novadespesa")}>Nova despesa</button>
         </div>
         <p>Preço do BitCoin brasileiro: R$ {valorBit}</p>
       </>}

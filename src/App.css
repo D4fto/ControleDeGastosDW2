@@ -45,9 +45,23 @@ body,#root{
     display: flex;
     padding: 20px;
     align-items: center;
+    height: 100%;
     gap: 20px;
 }
+.flex{
+    display: flex;
+}
 
+.flip-v{
+    transform: scaleY(-1);
+}
+
+.arrowOpen{
+    transition: transform .2s;
+    color: #d9d9d9;
+    margin-left: 5px;
+    cursor: pointer;
+}
 
 .ListaDespesas::-webkit-scrollbar{
     background-color: #e6e6e6;
@@ -114,17 +128,51 @@ body,#root{
     padding: 10px 0;
 }
 
-.DescricaoGrupo{
+.BordaDashed{
     border-top: 1px dashed #000;
-    padding-top: 10px;
+}
+.PaiDescricaoGrupo{
+    background-color: #fff;
+    padding: 5px 10px;
+    margin-bottom: 10px;
 }
 
-.CategoriaData{
-    padding-top: 10px;
+.CardBottom{
+    align-items: center;
+    padding: 10px 0 0 0 ;
 }
 
+.LapisLixeira{
+    display: flex;
+    gap: 5px;
+}
+
+.LapisLixeira i {
+    cursor: pointer;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+
+.AbreFecha {
+  display: grid;
+  grid-template-rows: 1fr;
+  overflow: hidden;
+  transition: grid-template-rows 0.3s ease;
+}
+.OverflowHidden{
+    overflow: hidden;
+}
+.Fechado {
+  grid-template-rows: 0fr;
+}
 .NomePrecoGrupo{
-    padding-bottom: 10px;
+    padding: 5px 10px;
+    background-color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .Tipo{
