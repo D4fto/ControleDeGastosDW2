@@ -12,6 +12,7 @@ body,#root{
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    font-size: 16px;
 }
 
 .MenuHorizontal{
@@ -42,7 +43,9 @@ body,#root{
 
 .Conteudo{
     display: flex;
-
+    padding: 20px;
+    align-items: center;
+    gap: 20px;
 }
 
 .ListaDespesas{
@@ -53,20 +56,28 @@ body,#root{
     min-height: 85dvh;
     max-height: 85dvh;
     padding: 15px;
+    padding-top: 0;
     background-color: #e6e6e6;
+    border-radius: 5px;
 }
 
 .ListaGrupo{
     padding-left: 10px;
+    border-left: 1px solid #9c9c9c;
 }
 
 .Despesa{
     background-color: #ffff;
     list-style: none;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .GrupoInfo{
     background-color: #ffff;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .Grupo{
@@ -77,4 +88,48 @@ body,#root{
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.NomePreco{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Descricao{
+    border-bottom: 1px dashed #000;
+    padding: 10px 0;
+}
+
+.DescricaoGrupo{
+    border-top: 1px dashed #000;
+    padding-top: 10px;
+}
+
+.CategoriaData{
+    padding-top: 10px;
+}
+
+.NomePrecoGrupo{
+    padding-bottom: 10px;
+}
+
+.Tipo{
+    font-size: 16px;
+    color: #606060;
+    padding: 5px;
+    border-bottom: 1px solid #606060;
+    margin-bottom: 5px;
+}
+
+h1{
+    font-size: 24px;
+}
+
+#DespesasTitulo{
+    position: sticky;
+    top: 0;
+    background-color: #e6e6e6;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    border-radius: 5px;
 }
