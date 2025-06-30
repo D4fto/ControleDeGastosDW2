@@ -57,14 +57,14 @@ export default function ExpansesList({data}){
     return(
         <div className="ListaDespesas">
             <h1>Despesas</h1>
-            <h1>Fixo</h1>
-            <ul>
+            <h1 className="Tipo">Fixo</h1>
+            <ul className="Lista">
                 {
                 createExpansesList2(handleInRoot(data.expanses.inRoot, "fixo"), data.expanses.fixo, data.groups.fixo)
                 }
             </ul>
-            <h1>Variável</h1>
-            <ul>
+            <h1 className="Tipo">Variável</h1>
+            <ul className="Lista">
             {
                 createExpansesList2(handleInRoot(data.expanses.inRoot, "variavel"), data.expanses.variavel, data.groups.variavel)
                 }
