@@ -148,9 +148,15 @@ function App() {
     <>
     <nav className='MenuHorizontal'>
       <h1 className='Titulo'>Investec</h1>
+<<<<<<< Updated upstream
       <div>
         <button onClick={()=>setvariavel("despesas")}>Despesas</button>
         <button onClick={()=>setvariavel("dashboard")}>Dashboard</button>
+=======
+      <div>
+        <button>Despesas</button>
+        <button>Dashboard</button>
+>>>>>>> Stashed changes
       </div>
     </nav>
     <div>
