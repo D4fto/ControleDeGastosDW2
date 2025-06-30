@@ -22,7 +22,7 @@ function addIdToGroup(address, group, id, value){
     }
     findGroupToAdd(address, group.children.groups, id, value)
 }
-export default function NewExpanse({data, setData}){
+export default function NewExpanse({data, setData, setVariavel}){
     const [group, setGroup] = useState("/")
     const [type, setType] = useState("fixo")
 
@@ -39,6 +39,7 @@ export default function NewExpanse({data, setData}){
             findGroupToAdd(group.substring(1,group.length-1).split("/"), newData.groups[type], id, parseInt(newExpanse.valor))
         }
         setData(newData)
+        setVariavel("despesas")
     }
     return(
         <div className="NovaDespesa">

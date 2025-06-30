@@ -5,6 +5,7 @@ export default function NewCategory({data, setData, setControl}){
         const newData = {...data}
         newData.categories.push(categoria)
         setData(newData)
+        setControl(false)
     }
     return(<div className="popUp novaCategoria">
         <button onClick={()=>{setControl(false)}}><i className="bi bi-x"></i></button>

@@ -171,7 +171,7 @@ function App() {
         </div>
         <p>Preço do BitCoin brasileiro: R$ {valorBit}</p>
       </>}
-        {variavel === "novadespesa"&&<><NewExpanse data={data} setData={setData}/></>}
+        {variavel === "novadespesa"&&<><NewExpanse data={data} setData={setData} setVariavel={setvariavel}/></>}
         {variavel === "editardespesa"&&<></>}
       </main>
     </div>
