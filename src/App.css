@@ -48,8 +48,22 @@ body,#root{
     gap: 20px;
 }
 
+
+.ListaDespesas::-webkit-scrollbar{
+    background-color: #e6e6e6;
+    width: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.ListaDespesas::-webkit-scrollbar-thumb{
+    background-color: #9c9c9c;
+    border-radius: 5px;
+}
+
 .ListaDespesas{
     width: 375px;
+    min-width: 375px;
+    max-width: 375px;
     height: 85dvh;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -131,5 +145,4 @@ h1{
     background-color: #e6e6e6;
     padding-top: 15px;
     padding-bottom: 5px;
-    border-radius: 5px;
 }
