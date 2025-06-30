@@ -52,4 +52,29 @@ body,#root{
     overflow-y: scroll;
     min-height: 85dvh;
     max-height: 85dvh;
+    padding: 15px;
+    background-color: #e6e6e6;
+}
+
+.ListaGrupo{
+    padding-left: 10px;
+}
+
+.Despesa{
+    background-color: #ffff;
+    list-style: none;
+}
+
+.GrupoInfo{
+    background-color: #ffff;
+}
+
+.Grupo{
+    list-style: none;
+}
+
+.Lista{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
