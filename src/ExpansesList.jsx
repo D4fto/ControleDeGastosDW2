@@ -46,7 +46,7 @@ function createExpansesList2(expIdArray, expanses, groupArray){
         continue
     }
 
-    return <div>{elements}</div>
+    return <>{elements}</>
 }
 export default function ExpansesList({data}){
     
