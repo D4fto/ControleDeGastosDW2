@@ -155,7 +155,7 @@ function App() {
 
       </div>
     </nav>
-    <div>
+    <div className='Conteudo'>
       <ExpansesList data={data}/>
       <main>
         {variavel === "dashboard"&&<></>}
