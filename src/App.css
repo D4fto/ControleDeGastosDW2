@@ -197,3 +197,51 @@ h1{
 button{
     cursor: pointer;
 }
+
+.Novo{
+    border: 1px solid #d9d9d9;
+    text-align: center;
+    border-radius: 5px;
+    max-height: 130px;
+}
+
+.FilhoDoNovo{
+    display: flex;
+}
+
+.FilhoDoNovo button{
+    display: flex;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.NetoDoNovo{
+    display: flex;
+    width: 110px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.Novo > h1{
+    background-color: #d9d9d9;
+        font-weight: 500;
+}
+
+.NetoDoNovo:not(:last-child){
+    border-right: 1px solid #d9d9d9;
+}
+
+.NetoDoNovo > button > i  {
+    font-size: 24px;
+}
+
+.NetoDoNovo:hover{
+    background-color: #e6e6e6;
+}
+
