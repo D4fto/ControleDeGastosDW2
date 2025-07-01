@@ -3,6 +3,7 @@ import NewExpanse from "./newExpanse";
 import ExpansesList from "./ExpansesList";
 import NewCategory from "./NewCategory";
 import PopUpButton from "./PopUpButton";
+import CategoryList from "./CategoryList";
 import NewGroup from "./NewGroup";
 import "./App.css";
 import bitcoin from "./bitcoin";
@@ -197,6 +198,7 @@ function App() {
                   </div>
                 </div>
               </div>
+              <CategoryList data={data}/>
               <p>Preço do BitCoin brasileiro: R$ {valorBit}</p>
             </>
           )}
