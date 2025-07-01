@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import PopUpButton from "./PopUpButton"
 import ChooseGroup from "./ChooseGroup"
-
+import "./PopUp.css"
 
 export default function NewGroup({data, setData, setControl}){
     const [group, setGroup] = useState("/")
@@ -12,7 +12,7 @@ export default function NewGroup({data, setData, setControl}){
     function adicionarGrupo(e){
         e.preventDefault()
     }
-    return(<div className="popUp novoGrupo">
+    return(<div className="PopUp novoGrupo">
         <button onClick={()=>{setControl(false)}}><i className="bi bi-x"></i></button>
         <h1>Novo Grupo</h1>
         <form onSubmit={adicionarGrupo}>

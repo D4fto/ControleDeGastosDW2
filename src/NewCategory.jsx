@@ -1,3 +1,5 @@
+import "./PopUp.css"
+
 export default function NewCategory({data, setData, setControl}){
     let categoria = ""
     function adicionarCategoria(e){
@@ -7,7 +9,7 @@ export default function NewCategory({data, setData, setControl}){
         setData(newData)
         setControl(false)
     }
-    return(<div className="popUp novaCategoria">
+    return(<div className="PopUp novaCategoria">
         <button onClick={()=>{setControl(false)}}><i className="bi bi-x"></i></button>
         <h1>Nova Categoria</h1>
         <form onSubmit={adicionarCategoria}>

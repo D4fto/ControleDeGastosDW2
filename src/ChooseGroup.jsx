@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "./PopUp.css"
 
 export default function ChooseGroup({data, setControl, type, group, setGroup}){
     function GroupOfList({name}){
@@ -12,7 +13,7 @@ export default function ChooseGroup({data, setControl, type, group, setGroup}){
         }
         return(arr)
     }
-    return(<div>
+    return(<div className="PopUp">
         <button onClick={()=>{setControl(false)}}><i className="bi bi-x"></i></button>
         <h1>Escolha o local - {type}</h1>
         <div className="GroupList">

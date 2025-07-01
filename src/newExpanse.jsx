@@ -59,8 +59,10 @@ export default function NewExpanse({data, setData, setVariavel}){
                 <input onChange={(e)=>{changeObject("data",e.target.value)}} id="data" type="date" required/> <br />
                 <label htmlFor="descricao">Descrição: </label>
                 <textarea onChange={(e)=>{changeObject("descricao",e.target.value)}} name="" id="descricao" placeholder="Descrição legal"></textarea> <br />
-                <label htmlFor="local">Local: </label>
-                <PopUpButton id="local" title={group} PopUp={ChooseGroup} props={{data: data, setData: setData, type:type, group: group, setGroup: setGroup}}/><br/>
+                <div style={{position: "relative", width: "fit-content"}}>
+                    <label htmlFor="local">Local: </label>
+                    <PopUpButton id="local" title={group} PopUp={ChooseGroup} props={{data: data, setData: setData, type:type, group: group, setGroup: setGroup}}/><br/>
+                </div>
                 <label htmlFor="categoria">Categoria: </label>
                 <select onChange={(e)=>{changeObject("categoria",e.target.value)}} name="" id="categoria">
                 {data.categories.map((e, k)=>{return <option key={k} value={e}>{e}</option>})}
