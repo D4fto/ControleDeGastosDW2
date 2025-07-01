@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState , useEffect } from "react"
 import ChooseGroup from "./ChooseGroup"
 import PopUpButton from "./PopUpButton"
 
@@ -25,6 +25,10 @@ function addIdToGroup(address, group, id, value){
 export default function NewExpanse({data, setData, setVariavel}){
     const [group, setGroup] = useState("/")
     const [type, setType] = useState("fixo")
+
+    useEffect(()=>{
+        setGroup("/")
+    }, [type])
 
     function send(event){
         event.preventDefault()

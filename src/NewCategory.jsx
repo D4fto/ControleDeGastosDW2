@@ -11,7 +11,7 @@ export default function NewCategory({data, setData, setControl}){
         <button onClick={()=>{setControl(false)}}><i className="bi bi-x"></i></button>
         <h1>Nova Categoria</h1>
         <form onSubmit={adicionarCategoria}>
-            <input type="text" name="category" id="category" onChange={(e)=>{categoria = e.target.value}} placeholder="Nome da categoria"/>
+            <input type="text" name="category" id="category" onChange={(e)=>{categoria = e.target.value}} placeholder="Nome da categoria" required/>
             <button>+</button>
         </form>
     </div>
