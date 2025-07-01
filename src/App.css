@@ -1,160 +1,160 @@
-@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body,#root{
-    font-family: "Inria Sans", sans-serif;
-    height: 100dvh;
-    width: 100dvw;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    font-size: 16px;
+body,
+#root {
+  font-family: "Inria Sans", sans-serif;
+  height: 100dvh;
+  width: 100dvw;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-size: 16px;
 }
 
-.MenuHorizontal{
-    font-size: smaller;
-    width: 100%;
-    min-height: 50px;
-    border-bottom: 1px solid #d5d5d5;
-    display: flex;
-    justify-content: space-between;
-    background-color: #f8f8f8;
-    color: #4A4A4A;
+.MenuHorizontal {
+  font-size: smaller;
+  width: 100%;
+  min-height: 50px;
+  border-bottom: 1px solid #d5d5d5;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f8f8f8;
+  color: #4a4a4a;
 }
 
-.Titulo{
-    margin: 10px;
+.Titulo {
+  margin: 10px;
 }
 
-.MenuHorizontal_DD{
-    margin: 15px;
-    display: flex;
-    gap: 5px;
-    color: #4A4A4A;
+.MenuHorizontal_DD {
+  margin: 15px;
+  display: flex;
+  gap: 5px;
+  color: #4a4a4a;
 }
-.MenuHorizontal_DD button{
-    background-color: transparent;
-    border: none;
-}
-
-.Conteudo{
-    display: flex;
-    padding: 20px;
-    align-items: center;
-    height: 100%;
-    gap: 20px;
-}
-.flex{
-    display: flex;
+.MenuHorizontal_DD button {
+  background-color: transparent;
+  border: none;
 }
 
-.flip-v{
-    transform: scaleY(-1);
+.Conteudo {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  height: 100%;
+  gap: 20px;
+}
+.flex {
+  display: flex;
 }
 
-.arrowOpen{
-    transition: transform .2s;
-    color: #d9d9d9;
-    margin-left: 5px;
-    cursor: pointer;
+.flip-v {
+  transform: scaleY(-1);
 }
 
-.ListaDespesas::-webkit-scrollbar{
-    background-color: #e6e6e6;
-    width: 10px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-.ListaDespesas::-webkit-scrollbar-thumb{
-    background-color: #9c9c9c;
-    border-radius: 5px;
+.arrowOpen {
+  transition: transform 0.2s;
+  color: #d9d9d9;
+  margin-left: 5px;
+  cursor: pointer;
 }
 
-.ListaDespesas{
-    width: 375px;
-    min-width: 375px;
-    max-width: 375px;
-    height: 85dvh;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    min-height: 85dvh;
-    max-height: 85dvh;
-    padding: 15px;
-    padding-top: 0;
-    background-color: #e6e6e6;
-    border-radius: 5px;
+.ListaDespesas::-webkit-scrollbar {
+  background-color: #e6e6e6;
+  width: 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.ListaDespesas::-webkit-scrollbar-thumb {
+  background-color: #9c9c9c;
+  border-radius: 5px;
 }
 
-.ListaGrupo{
-    padding-left: 10px;
-    border-left: 1px solid #9c9c9c;
+.ListaDespesas {
+  width: 375px;
+  min-width: 375px;
+  max-width: 375px;
+  height: 85dvh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  min-height: 85dvh;
+  max-height: 85dvh;
+  padding: 15px;
+  padding-top: 0;
+  background-color: #e6e6e6;
+  border-radius: 5px;
 }
 
-.Despesa{
-    background-color: #ffff;
-    list-style: none;
-    padding: 10px;
-    border-radius: 5px;
+.ListaGrupo {
+  padding-left: 10px;
+  border-left: 1px solid #9c9c9c;
 }
 
-.GrupoInfo{
-    background-color: #ffff;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
+.Despesa {
+  background-color: #ffff;
+  list-style: none;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-.Grupo{
-    list-style: none;
+.GrupoInfo {
+  background-color: #ffff;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-.Lista{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.Grupo {
+  list-style: none;
 }
 
-.NomePreco{
-    display: flex;
-    justify-content: space-between;
+.Lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.Descricao{
-    border-bottom: 1px dashed #000;
-    padding: 10px 0;
+.NomePreco {
+  display: flex;
+  justify-content: space-between;
 }
 
-.BordaDashed{
-    border-top: 1px dashed #000;
-}
-.PaiDescricaoGrupo{
-    background-color: #fff;
-    padding: 5px 10px;
-    margin-bottom: 10px;
+.Descricao {
+  border-bottom: 1px dashed #000;
+  padding: 10px 0;
 }
 
-.CardBottom{
-    align-items: center;
-    padding: 10px 0 0 0 ;
+.BordaDashed {
+  border-top: 1px dashed #000;
+}
+.PaiDescricaoGrupo {
+  background-color: #fff;
+  padding: 5px 10px;
+  margin-bottom: 10px;
 }
 
-.LapisLixeira{
-    display: flex;
-    gap: 5px;
+.CardBottom {
+  align-items: center;
+  padding: 10px 0 0 0;
+}
+
+.LapisLixeira {
+  display: flex;
+  gap: 5px;
 }
 
 .LapisLixeira i {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.space-between{
-    justify-content: space-between;
+.space-between {
+  justify-content: space-between;
 }
-
 
 .AbreFecha {
   display: grid;
@@ -162,96 +162,94 @@ body,#root{
   overflow: hidden;
   transition: grid-template-rows 0.3s ease;
 }
-.OverflowHidden{
-    overflow: hidden;
+.OverflowHidden {
+  overflow: hidden;
 }
 .Fechado {
   grid-template-rows: 0fr;
 }
-.NomePrecoGrupo{
-    padding: 5px 10px;
-    background-color: #fff;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+.NomePrecoGrupo {
+  padding: 5px 10px;
+  background-color: #fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
-.Tipo{
-    font-size: 16px;
-    color: #606060;
-    padding: 5px;
-    border-bottom: 1px solid #606060;
-    margin-bottom: 5px;
+.Tipo {
+  font-size: 16px;
+  color: #606060;
+  padding: 5px;
+  border-bottom: 1px solid #606060;
+  margin-bottom: 5px;
 }
 
-h1{
-    font-size: 24px;
+h1 {
+  font-size: 24px;
 }
 
-#DespesasTitulo{
-    position: sticky;
-    top: 0;
-    background-color: #e6e6e6;
-    padding-top: 15px;
-    padding-bottom: 5px;
+#DespesasTitulo {
+  position: sticky;
+  top: 0;
+  background-color: #e6e6e6;
+  padding-top: 15px;
+  padding-bottom: 5px;
 }
-button{
-    cursor: pointer;
-}
-
-.Novo{
-    border: 1px solid #d9d9d9;
-    text-align: center;
-    border-radius: 5px;
-    max-height: 130px;
-    max-width: 330px;
+button {
+  cursor: pointer;
 }
 
-.FilhoDoNovo{
-    display: flex;
+.Novo {
+  border: 1px solid #d9d9d9;
+  text-align: center;
+  border-radius: 5px;
+  max-height: 130px;
+  max-width: 330px;
 }
 
-.NetoDoNovo > button{
-    display: flex;
-    background-color: transparent;
-    border: none;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.FilhoDoNovo {
+  display: flex;
 }
 
-.NetoDoNovo{
-    position: relative;
-    display: flex;
-    min-width: 110px;
-    max-width: 110px;
-    max-height: 100px;
-    min-height: 100px;
-    align-items: center;
-    justify-content: center;
-
+.NetoDoNovo > button {
+  display: flex;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.Novo > h1{
-    background-color: #d9d9d9;
-        font-weight: 500;
+.NetoDoNovo {
+  position: relative;
+  display: flex;
+  min-width: 110px;
+  max-width: 110px;
+  max-height: 100px;
+  min-height: 100px;
+  align-items: center;
+  justify-content: center;
 }
 
-.NetoDoNovo:not(:last-child){
-    border-right: 1px solid #d9d9d9;
+.Novo > h1 {
+  background-color: #d9d9d9;
+  font-weight: 500;
 }
 
-.NetoDoNovo > button > i  {
-    font-size: 24px;
+.NetoDoNovo:not(:last-child) {
+  border-right: 1px solid #d9d9d9;
 }
 
-.NetoDoNovo:hover{
-    background-color: #e6e6e6;
+.NetoDoNovo > button > i {
+  font-size: 24px;
+}
+
+.NetoDoNovo:hover {
+  background-color: #e6e6e6;
 }
 
 main {
-    height: 100%;
-    width: 100%;
-    
+  height: 100%;
+  width: 100%;
 }
