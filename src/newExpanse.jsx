@@ -1,6 +1,7 @@
 import { useState , useEffect } from "react"
 import ChooseGroup from "./ChooseGroup"
 import PopUpButton from "./PopUpButton"
+import "./NewExpanse.css"
 
 function findGroupToAdd(address, groups, id, value){
     for (const element of groups) {
