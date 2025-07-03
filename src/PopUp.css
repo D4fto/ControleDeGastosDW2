@@ -13,3 +13,13 @@
     flex-direction: column;
     text-align: center;
 }
+.PopUp.Above{
+    
+    left: 50%;
+    top: unset;
+    bottom: 50%;
+    transform: translateX(-50%);
+}
+.PopUp h1{
+    min-width: max-content;
+}

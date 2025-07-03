@@ -91,11 +91,12 @@ export default function NewExpanse({ data, setData, setVariavel }) {
           ></textarea>{" "}
           <br />
           <div style={{ position: "relative", width: "fit-content" }}>
-            <label htmlFor="local">Local: </label>
+            <label htmlFor="local">Endereço: </label><br />
             <PopUpButton
               id="local"
               title={group}
               PopUp={ChooseGroup}
+              above={true}
               props={{
                 data: data,
                 setData: setData,
@@ -108,7 +109,6 @@ export default function NewExpanse({ data, setData, setVariavel }) {
           </div>
           <div className="DataCategoria">
             <label htmlFor="data">Data: </label>
-            <br />
             <input
               onChange={(e) => {
                 changeObject("data", e.target.value);

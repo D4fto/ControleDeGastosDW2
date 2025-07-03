@@ -1,7 +1,7 @@
 import { useState } from "react"
 import "./PopUp.css"
 
-export default function ChooseGroup({data, setControl, type, group, setGroup}){
+export default function ChooseGroup({data, setControl, type, group, setGroup, above}){
     function GroupOfList({name}){
         return(<div onClick={()=>{setPreview(name)}}>{name}</div>)
     }
@@ -13,7 +13,7 @@ export default function ChooseGroup({data, setControl, type, group, setGroup}){
         }
         return(arr)
     }
-    return(<div className="PopUp">
+    return(<div className={"PopUp" + (above?" Above":"")}>
         <button onClick={()=>{setControl(false)}}><i className="bi bi-x"></i></button>
         <h1>Escolha o local - {type}</h1>
         <div className="GroupList">

@@ -4,9 +4,12 @@ import ExpansesList from "./ExpansesList";
 import NewCategory from "./NewCategory";
 import PopUpButton from "./PopUpButton";
 import CategoryList from "./CategoryList";
+import SaveMonth from "./SaveMonth";
 import NewGroup from "./NewGroup";
 import "./App.css";
 import bitcoin from "./bitcoin";
+
+
 
 function limpaLocal() {
   localStorage.setItem("data", "");
@@ -121,24 +124,13 @@ function initializeData() {
       },
     },
     categories: ["Sem categoria", "Essenciais", "Lazer"],
+    storage:{}
   };
   localStorage.setItem("data", JSON.stringify(data));
 }
 
 function updateDataStorage(data) {
   localStorage.setItem("data", JSON.stringify(data));
-}
-{
-  /* <NewExpanse data={data} setData={setData}/>
-    <div>
-      <PopUpButton title={"Categoria"} icon={<i className="bi bi-bookmark"></i>} PopUp={NewCategory} props={{data: data, setData: setData}}/>
-    </div>
-    <div>
-      <PopUpButton title={"Grupo"} icon={<i className="bi bi-folder-plus"></i>} PopUp={NewGroup} props={{data: data, setData: setData}}/>
-    </div> */
-}
-{
-  /* <p>Preço do BitCoin brasileiro: R$ {valorBit}</p> */
 }
 function App() {
   const [variavel, setvariavel] = useState("dashboard");
@@ -149,18 +141,19 @@ function App() {
   useEffect(() => {
     updateDataStorage(data);
   }, [data]);
-  if (!searchBTC) {
-    bitcoin(setvalorBit);
-    searchBTC = setInterval(() => {
-      bitcoin(setvalorBit);
-    }, 60000);
-  }
+  // if (!searchBTC) {
+  //   bitcoin(setvalorBit);
+  //   searchBTC = setInterval(() => {
+  //     bitcoin(setvalorBit);
+  //   }, 60000);
+  // }
   return (
     <>
       <nav className="MenuHorizontal">
         <h1 className="Titulo">Investec</h1>
 
         <div className="MenuHorizontal_DD">
+          <SaveMonth data={data} setData={setData}/>
           <button onClick={() => setvariavel("despesas")}>Despesas</button>
           <button onClick={() => setvariavel("dashboard")}>Dashboard</button>
         </div>

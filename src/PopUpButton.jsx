@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-export default function PopUpButton({title, icon, PopUp, props}){
+export default function PopUpButton({title, icon, PopUp, props, above}){
     const [control, setControl] = useState(false)
 
     return(<>
@@ -9,6 +9,6 @@ export default function PopUpButton({title, icon, PopUp, props}){
             {icon}
             {title}
         </button>
-        {control && <PopUp {...props} setControl = {setControl}/>}
+        {control && <PopUp {...props} setControl = {setControl} above={above}/>}
     </>)
 }
