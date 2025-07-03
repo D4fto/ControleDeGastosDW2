@@ -4,7 +4,7 @@ import ExpansesList from "./ExpansesList";
 import NewCategory from "./NewCategory";
 import PopUpButton from "./PopUpButton";
 import CategoryList from "./CategoryList";
-import SaveMonth from "./SaveMonth";
+import Dashboard from "./Dashboard";
 import NewGroup from "./NewGroup";
 import "./App.css";
 import bitcoin from "./bitcoin";
@@ -95,7 +95,7 @@ function initializeData() {
           valor: "1200",
           data: "2025-06-11",
           descricao: "Seguro do celular kkkkkk",
-          categoria: "Essenciais",
+          categoria: "Lazer",
         },
       },
       variavel: {
@@ -112,7 +112,7 @@ function initializeData() {
           valor: "10000",
           data: "2025-06-11",
           descricao: "Compra na cantina",
-          categoria: "Essenciais",
+          categoria: "Lazer",
         },
         3: {
           nome: "Transporte",
@@ -153,7 +153,7 @@ function App() {
         <h1 className="Titulo">Investec</h1>
 
         <div className="MenuHorizontal_DD">
-          <SaveMonth data={data} setData={setData}/>
+          
           <button onClick={() => setvariavel("despesas")}>Despesas</button>
           <button onClick={() => setvariavel("dashboard")}>Dashboard</button>
         </div>
@@ -161,7 +161,9 @@ function App() {
       <div className="Conteudo">
         <ExpansesList data={data} />
         <main>
-          {variavel === "dashboard" && <></>}
+          {variavel === "dashboard" && <>
+            <Dashboard data={data} setData={setData}/>
+          </>}
           {variavel === "despesas" && (
             <>
               <div className="Novo">
