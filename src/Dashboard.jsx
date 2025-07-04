@@ -4,6 +4,22 @@ function parseCategoriesDate(str) {
     const [month, , year] = str.split('/');
     return new Date(`${year}-${String(parseInt(month)+1).padStart(2, '0')}-01`);
 }
+function addOneTMonth(str){
+    const [month, , year] = str.split('/');
+    return `${parseInt(month)+1}/01/${year}`
+
+}
+function subOneToMonth(str){
+    const [month, , year] = str.split('/');
+    if(month=="0"){
+        console.log(`${12}/01/${parseInt(year)-1}`)
+        return `${11}/01/${parseInt(year)-1}`
+        
+    }
+    
+    return `${parseInt(month)-1}/01/${year}`
+
+}
 export default function Dashboard({data, setData}){
     let actualDate = new Date()
     const [categoriesDate, setCategoryDate] = useState(`${actualDate.getMonth()}/01/${actualDate.getFullYear()}`)
@@ -73,20 +89,21 @@ export default function Dashboard({data, setData}){
     function drawLineChart() {
         let array = Object.entries(data.storage)
         array = array.filter((x) => {
-            return x[0].includes(new Date(categoriesDate).getFullYear())
+            return x[0].includes(new Date(addOneTMonth(categoriesDate)).getFullYear()) && x[1].expanses.length>0
         })
         array.sort((a,b) => {
-            let dateA = new Date(a[0])
-            let dateB = new Date(b[0])
+            let dateA = new Date(addOneTMonth(a[0]))
+            let dateB = new Date(addOneTMonth(b[0]))
             return dateA.getMonth() - dateB.getMonth()
         })
         array.map((x) => {
-            let date = new Date(x[0])
-            x[0] = date.toLocaleString("default", {month: "long"})
+            let date = new Date(addOneTMonth(x[0]))
+            x[0] = x[0] = date.toLocaleString("default", {month: "long"})
             x[1] = x[1].total
+            console.log(x)
             
         })
-        console.log(array)
+        
         
         array.unshift(["Categoria", "valor"])
 
@@ -114,7 +131,12 @@ export default function Dashboard({data, setData}){
                     setCategoryDate(`${(date.getMonth()+1)%12}/01/${date.getMonth()+1==12?date.getFullYear()+1:date.getFullYear()}`);
                 }}
             />
-                <p>{data.storage[categoriesDate].total}</p>
+                <p>
+                    {data.storage[categoriesDate].total} 
+                    {data.storage[subOneToMonth(categoriesDate)].expanses.length>0 && data.storage[subOneToMonth(categoriesDate)]?
+                    <p>{((data.storage[categoriesDate].total/data.storage[subOneToMonth(categoriesDate)].total-1)*100).toFixed(2)}%</p>:<></>
+                    }
+                    </p>
             </div>
             <div>
                 <div ref={barchartRef} style={{width: "450px", height:"500px", border:"1px solid #d9d9d9"}}></div>
