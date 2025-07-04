@@ -23,3 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 html.html
+src/storage.jsx

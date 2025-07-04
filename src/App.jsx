@@ -6,6 +6,7 @@ import PopUpButton from "./PopUpButton";
 import CategoryList from "./CategoryList";
 import Dashboard from "./Dashboard";
 import NewGroup from "./NewGroup";
+import Storage from "./storage";
 import "./App.css";
 import bitcoin from "./bitcoin";
 
@@ -124,7 +125,7 @@ function initializeData() {
       },
     },
     categories: ["Sem categoria", "Essenciais", "Lazer"],
-    storage:{}
+    storage:Storage()
   };
   localStorage.setItem("data", JSON.stringify(data));
 }
