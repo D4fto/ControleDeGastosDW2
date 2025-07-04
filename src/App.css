@@ -48,6 +48,7 @@ body,
   align-items: center;
   height: 100%;
   gap: 20px;
+  max-height: calc(100dvh - 50px);
 }
 .flex {
   display: flex;
@@ -79,11 +80,11 @@ body,
   width: 375px;
   min-width: 375px;
   max-width: 375px;
-  height: 85dvh;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-  min-height: 85dvh;
-  max-height: 85dvh;
+  min-height: 100%;
+  max-height: 100%;
   padding: 15px;
   padding-top: 0;
   background-color: #e6e6e6;
@@ -252,4 +253,6 @@ button {
 main {
   height: 100%;
   width: 100%;
+  max-height: 100%;
+  overflow: auto;
 }
