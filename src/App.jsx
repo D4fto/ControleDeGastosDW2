@@ -14,10 +14,14 @@ import bitcoin from "./bitcoin";
 
 function limpaLocal() {
   localStorage.setItem("data", "");
+  localStorage.setItem("variavel", "")
 }
 limpaLocal();
 if (!localStorage.getItem("data")) {
   initializeData();
+}
+if (!localStorage.getItem("variavel")) {
+  localStorage.setItem("variavel", JSON.stringify("dashboard"))
 }
 let searchBTC;
 
@@ -130,18 +134,22 @@ function initializeData() {
   localStorage.setItem("data", JSON.stringify(data));
 }
 
-function updateDataStorage(data) {
-  localStorage.setItem("data", JSON.stringify(data));
+function updateDataStorage(name,data) {
+  localStorage.setItem(name, JSON.stringify(data));
 }
+
 function App() {
-  const [variavel, setvariavel] = useState("dashboard");
+  const [variavel, setvariavel] = useState(()=>JSON.parse(localStorage.getItem("variavel")));
   const [valorBit, setvalorBit] = useState(0);
   const [data, setData] = useState(() =>
     JSON.parse(localStorage.getItem("data"))
   );
   useEffect(() => {
-    updateDataStorage(data);
+    updateDataStorage("data",data);
   }, [data]);
+  useEffect(() => {
+    updateDataStorage("variavel",variavel);
+  }, [variavel]);
   // if (!searchBTC) {
   //   bitcoin(setvalorBit);
   //   searchBTC = setInterval(() => {

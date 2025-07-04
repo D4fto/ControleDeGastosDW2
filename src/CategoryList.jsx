@@ -30,7 +30,10 @@ export default function CategoryList({data}){
                 {data.categories.map((e)=>{
                     return(
                         <div>
-                            <h4>{e} - R$ {String(values[e]).padStart(3, "0").substring(0, String(values[e]).padStart(3, "0").length - 2)},{String(values[e]).padStart(3, "0").substring(String(values[e]).padStart(3, "0").length - 2)}</h4>
+                            <ddddiv>
+                                <h4>{e} - R$ {String(values[e]).padStart(3, "0").substring(0, String(values[e]).padStart(3, "0").length - 2)},{String(values[e]).padStart(3, "0").substring(String(values[e]).padStart(3, "0").length - 2)}</h4>
+                                <i className="bi bi-trash3-fill"></i>
+                            </ddddiv>
                             <ul>
                                 {pin[e].map((t)=>(
                                 <li>

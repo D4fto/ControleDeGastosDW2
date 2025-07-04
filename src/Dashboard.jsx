@@ -2,7 +2,7 @@ import { useRef, useState, useEffect} from "react";
 import SaveMonth from "./SaveMonth"
 function parseDate(str) {
     const [month, , year] = str.split('/');
-    return new Date(`${year}-${String(parseInt(month)+1).padStart(2, '0')}-01`);
+    return new Date(`${year}-${String(parseInt(month)+1).padStart(2, '0')}`);
 }
 function addOneTMonth(str){
     const [month, , year] = str.split('/');
@@ -23,7 +23,7 @@ export default function Dashboard({data, setData}){
     let actualDate = new Date()
     const [categoriesDate, setCategoryDate] = useState(`${actualDate.getMonth()}/01/${actualDate.getFullYear()}`)
     const [expansesDate, setExpansesDate] = useState(`${actualDate.getMonth()}/01/${actualDate.getFullYear()}`)
-    const [monthsDate, setMonthsDate] = useState(`${actualDate.getMonth()}/01/${actualDate.getFullYear()}`)
+    const [yearDate, setYearDate] = useState(actualDate.getFullYear())
     const [totalDate, setTotalDate] = useState(`${actualDate.getMonth()}/01/${actualDate.getFullYear()}`)
     const piechartRef = useRef()
     const barchartRef = useRef()
@@ -32,7 +32,7 @@ export default function Dashboard({data, setData}){
     function filterByYear(){
         let array = Object.entries(data.storage)
         array = array.filter((x) => {
-            return x[0].includes(new Date(addOneTMonth(monthsDate)).getFullYear()) && x[1].expanses.length>0
+            return x[0].includes(yearDate) && x[1].expanses.length>0
         })
         return array
     }
@@ -52,13 +52,6 @@ export default function Dashboard({data, setData}){
                 expanses: []
             }
         }
-        if(!data.storage[monthsDate]){
-            data.storage[monthsDate]={
-                total: 0,
-                categoryMap: {},
-                expanses: []
-            }
-        }
         if(!data.storage[totalDate]){
             data.storage[totalDate]={
                 total: 0,
@@ -66,7 +59,7 @@ export default function Dashboard({data, setData}){
                 expanses: []
             }
         }
-    }, [categoriesDate, expansesDate, monthsDate, totalDate])
+    }, [categoriesDate, expansesDate, totalDate])
 
 
     google.charts.load('current', {'packages':['corechart']});
@@ -153,8 +146,8 @@ export default function Dashboard({data, setData}){
             <div>
                 <div style={{border:"1px solid #d9d9d9", width: "450px", height:"500px"}}>
                     <input
-                        type="date"
-                        value={parseDate(categoriesDate).toISOString().split('T')[0]}
+                        type="month"
+                        value={parseDate(categoriesDate).toISOString().split('T')[0].substring(0, parseDate(categoriesDate).toISOString().split('T')[0].length-3)}
                         onChange={(e) => {
                             const date = new Date(e.target.value);
                             setCategoryDate(`${(date.getMonth()+1)%12}/01/${date.getMonth()+1==12?date.getFullYear()+1:date.getFullYear()}`);
@@ -164,8 +157,8 @@ export default function Dashboard({data, setData}){
                 </div>
                 <SaveMonth data={data} setData={setData}/>
                 <input
-                type="date"
-                value={parseDate(totalDate).toISOString().split('T')[0]}
+                type="month"
+                value={parseDate(totalDate).toISOString().split('T')[0].substring(0, parseDate(totalDate).toISOString().split('T')[0].length-3)}
                 onChange={(e) => {
                     const date = new Date(e.target.value);
                     setTotalDate(`${(date.getMonth()+1)%12}/01/${date.getMonth()+1==12?date.getFullYear()+1:date.getFullYear()}`);
@@ -175,7 +168,7 @@ export default function Dashboard({data, setData}){
                 <div>{data.storage[totalDate]?<p>
                     <>{data.storage[totalDate].total} </>
                     {data.storage[subOneToMonth(totalDate)].expanses.length>0 && data.storage[subOneToMonth(totalDate)]?
-                        <span>{((data.storage[totalDate].total/data.storage[subOneToMonth(totalDate)].total-1)*100).toFixed(2)}%</span>:<></>
+                        <span className={data.storage[totalDate].total>data.storage[subOneToMonth(totalDate)]?"Maior":"Menor"}><i className="bi bi-caret-down-fill"></i> {((data.storage[totalDate].total/data.storage[subOneToMonth(totalDate)].total-1)*100).toFixed(2)}%</span>:<></>
                     }</p>:"No data"
                     
                 }
@@ -184,9 +177,10 @@ export default function Dashboard({data, setData}){
             <div>
                 <div style={{border:"1px solid #d9d9d9", width: "450px", height:"500px"}}>
                     <input
-                        type="date"
-                        value={parseDate(expansesDate).toISOString().split('T')[0]}
+                        type="month"
+                        value={parseDate(expansesDate).toISOString().split('T')[0].substring(0, parseDate(expansesDate).toISOString().split('T')[0].length-3)}
                         onChange={(e) => {
+                            console.log(parseDate(expansesDate).toISOString().split('T')[0].substring(0, parseDate(expansesDate).toISOString().split('T')[0].length-3))
                             const date = new Date(e.target.value);
                             setExpansesDate(`${(date.getMonth()+1)%12}/01/${date.getMonth()+1==12?date.getFullYear()+1:date.getFullYear()}`);
                         }}
@@ -195,14 +189,13 @@ export default function Dashboard({data, setData}){
                 </div>
                 <div style={{border:"1px solid #d9d9d9", width: "450px", height:"500px"}}>
                     <input
-                        type="date"
-                        value={parseDate(monthsDate).toISOString().split('T')[0]}
+                        type="number" id="ano" name="ano" min="1900" max="2100" step="1"
+                        value={yearDate}
                         onChange={(e) => {
-                            const date = new Date(e.target.value);
-                            setMonthsDate(`${(date.getMonth()+1)%12}/01/${date.getMonth()+1==12?date.getFullYear()+1:date.getFullYear()}`);
+                            setYearDate(e.target.value);
                         }}
                     />
-                    {data.storage[expansesDate] ? <>{filterByYear().length>0 ? <div ref={linechartRef} style={{width: "440px", height:"450px"}}></div>:<p>No data</p>}</>:<p>No data</p>}
+                    {filterByYear().length>0 ? <div ref={linechartRef} style={{width: "440px", height:"450px"}}></div>:<p>No data</p>}
                 </div>
             </div>
         </div>
