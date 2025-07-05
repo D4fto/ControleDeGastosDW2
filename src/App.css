@@ -13,14 +13,14 @@ body,
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .MenuHorizontal {
   font-size: smaller;
   width: 100%;
-  min-height: 50px;
-  border-bottom: 1px solid #d5d5d5;
+  min-height: 3.125rem;
+  border-bottom: .0625rem solid #d5d5d5;
   display: flex;
   justify-content: space-between;
   background-color: #f8f8f8;
@@ -28,13 +28,13 @@ body,
 }
 
 .Titulo {
-  margin: 10px;
+  margin: .625rem;
 }
 
 .MenuHorizontal_DD {
-  margin: 15px;
+  margin: .9375rem;
   display: flex;
-  gap: 5px;
+  gap: .3125rem;
   color: #4a4a4a;
 }
 .MenuHorizontal_DD button {
@@ -44,11 +44,11 @@ body,
 
 .Conteudo {
   display: flex;
-  padding: 20px;
+  padding: 1.25rem;
   align-items: center;
   height: 100%;
-  gap: 20px;
-  max-height: calc(100dvh - 50px);
+  gap: 1.25rem;
+  max-height: calc(100dvh - 3.125rem);
 }
 .flex {
   display: flex;
@@ -61,53 +61,53 @@ body,
 .arrowOpen {
   transition: transform 0.2s;
   color: #d9d9d9;
-  margin-left: 5px;
+  margin-left: .3125rem;
   cursor: pointer;
 }
 
 .ListaDespesas::-webkit-scrollbar {
   background-color: #e6e6e6;
-  width: 10px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  width: .625rem;
+  border-top-right-radius: .3125rem;
+  border-bottom-right-radius: .3125rem;
 }
 .ListaDespesas::-webkit-scrollbar-thumb {
   background-color: #9c9c9c;
-  border-radius: 5px;
+  border-radius: .3125rem;
 }
 
 .ListaDespesas {
-  width: 375px;
-  min-width: 375px;
-  max-width: 375px;
+  width: 23.4375rem;
+  min-width: 23.4375rem;
+  max-width: 23.4375rem;
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
   min-height: 100%;
   max-height: 100%;
-  padding: 15px;
+  padding: .9375rem;
   padding-top: 0;
   background-color: #e6e6e6;
-  border-radius: 5px;
+  border-radius: .3125rem;
 }
 
 .ListaGrupo {
-  padding-left: 10px;
-  border-left: 1px solid #9c9c9c;
+  padding-left: .625rem;
+  border-left: .0625rem solid #9c9c9c;
 }
 
 .Despesa {
   background-color: #ffff;
   list-style: none;
-  padding: 10px;
-  border-radius: 5px;
+  padding: .625rem;
+  border-radius: .3125rem;
 }
 
 .GrupoInfo {
   background-color: #ffff;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 5px;
+  margin-bottom: .625rem;
+  padding: .625rem;
+  border-radius: .3125rem;
 }
 
 .Grupo {
@@ -117,7 +117,7 @@ body,
 .Lista {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: .625rem;
 }
 
 .NomePreco {
@@ -126,27 +126,27 @@ body,
 }
 
 .Descricao {
-  border-bottom: 1px dashed #000;
-  padding: 10px 0;
+  border-bottom: .0625rem dashed #000;
+  padding: .625rem 0;
 }
 
 .BordaDashed {
-  border-top: 1px dashed #000;
+  border-top: .0625rem dashed #000;
 }
 .PaiDescricaoGrupo {
   background-color: #fff;
-  padding: 5px 10px;
-  margin-bottom: 10px;
+  padding: .3125rem .625rem;
+  margin-bottom: .625rem;
 }
 
 .CardBottom {
   align-items: center;
-  padding: 10px 0 0 0;
+  padding: .625rem 0 0 0;
 }
 
 .LapisLixeira {
   display: flex;
-  gap: 5px;
+  gap: .3125rem;
 }
 
 .LapisLixeira i {
@@ -170,41 +170,41 @@ body,
   grid-template-rows: 0fr;
 }
 .NomePrecoGrupo {
-  padding: 5px 10px;
+  padding: .3125rem .625rem;
   background-color: #fff;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: .3125rem;
+  border-top-right-radius: .3125rem;
 }
 
 .Tipo {
-  font-size: 16px;
+  font-size: 1rem;
   color: #606060;
-  padding: 5px;
-  border-bottom: 1px solid #606060;
-  margin-bottom: 5px;
+  padding: .3125rem;
+  border-bottom: .0625rem solid #606060;
+  margin-bottom: .3125rem;
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 #DespesasTitulo {
   position: sticky;
   top: 0;
   background-color: #e6e6e6;
-  padding-top: 15px;
-  padding-bottom: 5px;
+  padding-top: .9375rem;
+  padding-bottom: .3125rem;
 }
 button {
   cursor: pointer;
 }
 
 .Novo {
-  border: 1px solid #d9d9d9;
+  border: .0625rem solid #d9d9d9;
   text-align: center;
-  border-radius: 5px;
-  max-height: 130px;
-  max-width: 330px;
+  border-radius: .3125rem;
+  max-height: 8.125rem;
+  max-width: 20.625rem;
 }
 
 .FilhoDoNovo {
@@ -225,10 +225,10 @@ button {
 .NetoDoNovo {
   position: relative;
   display: flex;
-  min-width: 110px;
-  max-width: 110px;
-  max-height: 100px;
-  min-height: 100px;
+  min-width: 6.875rem;
+  max-width: 6.875rem;
+  max-height: 6.25rem;
+  min-height: 6.25rem;
   align-items: center;
   justify-content: center;
 }
@@ -239,11 +239,11 @@ button {
 }
 
 .NetoDoNovo:not(:last-child) {
-  border-right: 1px solid #d9d9d9;
+  border-right: .0625rem solid #d9d9d9;
 }
 
 .NetoDoNovo > button > i {
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .NetoDoNovo:hover {
