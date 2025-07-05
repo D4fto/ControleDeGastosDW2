@@ -114,7 +114,8 @@ export default function Dashboard({data, setData}){
             title: 'Gasto por categoria',
             legend: {position: "bottom"},
             is3D: true,
-            colors: ["#A4A4A4", "878D96", "2F2F2F"]
+            colors: ["#A4A4A4", "878D96", "2F2F2F"],
+            
         };
 
         let chart = new google.visualization.PieChart(piechartRef.current);
@@ -195,7 +196,7 @@ export default function Dashboard({data, setData}){
     return(<>
         <div className="flex">
             <div>
-                <div style={{border:"1px solid #d9d9d9", width: "450px", height:"500px"}}>
+                <div style={{border:".0625rem solid #d9d9d9", width: "22.25rem", height:"27rem"}}>
                     <input
                         type="month"
                         value={parseDate(categoriesDate).toISOString().split('T')[0].substring(0, parseDate(categoriesDate).toISOString().split('T')[0].length-3)}
@@ -207,7 +208,7 @@ export default function Dashboard({data, setData}){
                             }
                         }}
                     />
-                    <div ref={piechartRef} style={{width: "440px", height:"450px"}}></div>
+                    <div ref={piechartRef} style={{width: "100%", height:"85%"}}></div>
                 </div>
                 <SaveMonth data={data} setData={setData}/>
                 <button onClick={limparMes}>LIMPAR MÊS</button>
@@ -233,7 +234,7 @@ export default function Dashboard({data, setData}){
                 </div>
             </div>
             <div>
-                <div style={{border:"1px solid #d9d9d9", width: "450px", height:"500px"}}>
+                <div style={{border:".0625rem solid #d9d9d9", width: "29.1875rem", height:"21.0625rem"}}>
                     <input
                         type="month"
                         value={parseDate(expansesDate).toISOString().split('T')[0].substring(0, parseDate(expansesDate).toISOString().split('T')[0].length-3)}
@@ -245,9 +246,9 @@ export default function Dashboard({data, setData}){
                             }
                         }}
                     />
-                    {data.storage[expansesDate] ? <>{data.storage[expansesDate].expanses.length>0 ? <div ref={barchartRef} style={{width: "440px", height:"450px"}}></div>:<p>No data</p>}</>:<p>No data</p>}
+                    {data.storage[expansesDate] ? <>{data.storage[expansesDate].expanses.length>0 ? <div ref={barchartRef} style={{width: "100%", height:"85%"}}></div>:<p>No data</p>}</>:<p>No data</p>}
                 </div>
-                <div style={{border:"1px solid #d9d9d9", width: "450px", height:"500px"}}>
+                <div style={{border:".0625rem solid #d9d9d9", width: "29.1875rem", height:"17.125rem"}}>
                     <input
                         type="number" id="ano" name="ano" min="1900" max="2100" step="1"
                         value={yearDate}
@@ -255,7 +256,7 @@ export default function Dashboard({data, setData}){
                             setYearDate(e.target.value);
                         }}
                     />
-                    {filterByYear().length>0 ? <div ref={linechartRef} style={{width: "440px", height:"450px"}}></div>:<p>No data</p>}
+                    {filterByYear().length>0 ? <div ref={linechartRef} style={{width: "100%", height:"85%"}}></div>:<p>No data</p>}
                 </div>
             </div>
         </div>

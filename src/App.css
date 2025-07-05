@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: calc(100dvh / 720 * 16);
+}
+
 body,
 #root {
   font-family: "Inria Sans", sans-serif;
