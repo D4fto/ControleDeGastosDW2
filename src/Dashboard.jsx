@@ -41,6 +41,15 @@ export default function Dashboard({data, setData}){
         })
         return array
     }
+    function limparMes(){
+        const newData = {...data}
+        newData.storage[`${actualDate.getMonth()}/01/${actualDate.getFullYear()}`]={
+            total: 0,
+            categoryMap: {},
+            expanses: []
+        }
+        setData(newData)
+    }
 
     useEffect(()=>{
         if(!data.storage[categoriesDate]){
@@ -75,14 +84,11 @@ export default function Dashboard({data, setData}){
             drawLineChart();
         });
     }, []);
-    // Pie Chart
     useEffect(() => {
         if (google.visualization && google.visualization.PieChart) {
             drawChart();
         }
-    }, [categoriesDate]);
-
-    // Bar Chart
+    }, [categoriesDate, data]);
     useEffect(() => {
         if(data.storage[expansesDate]){
 
@@ -90,16 +96,12 @@ export default function Dashboard({data, setData}){
                 drawBarChart();
             }
         }
-    }, [expansesDate]);
-
-    // Line Chart
+    }, [expansesDate, data]);
     useEffect(() => {
         if (google.visualization && google.visualization.LineChart && filterByYear().length>0) {
             drawLineChart();
         }
-    }, [yearDate]);
-    // console.log("odihfdihfdudfifidudf")
-    // console.log([...data.storage[categoriesDate].expanses])
+    }, [yearDate, data]);
     function drawChart() {
         let array = Object.entries(data.storage[categoriesDate].categoryMap)
         
@@ -198,19 +200,26 @@ export default function Dashboard({data, setData}){
                         type="month"
                         value={parseDate(categoriesDate).toISOString().split('T')[0].substring(0, parseDate(categoriesDate).toISOString().split('T')[0].length-3)}
                         onChange={(e) => {
-                            const date = new Date(e.target.value);
-                            setCategoryDate(`${(date.getMonth()+1)%12}/01/${date.getMonth()+1==12?date.getFullYear()+1:date.getFullYear()}`);
+                            if(e.target.value){
+
+                                const date = new Date(e.target.value);
+                                setCategoryDate(`${(date.getMonth()+1)%12}/01/${date.getMonth()+1==12?date.getFullYear()+1:date.getFullYear()}`);
+                            }
                         }}
                     />
                     <div ref={piechartRef} style={{width: "440px", height:"450px"}}></div>
                 </div>
                 <SaveMonth data={data} setData={setData}/>
+                <button onClick={limparMes}>LIMPAR MÊS</button>
                 <input
                 type="month"
                 value={parseDate(totalDate).toISOString().split('T')[0].substring(0, parseDate(totalDate).toISOString().split('T')[0].length-3)}
                 onChange={(e) => {
-                    const date = new Date(e.target.value);
-                    setTotalDate(`${(date.getMonth()+1)%12}/01/${date.getMonth()+1==12?date.getFullYear()+1:date.getFullYear()}`);
+                    if(e.target.value){
+                        
+                        const date = new Date(e.target.value);
+                        setTotalDate(`${(date.getMonth()+1)%12}/01/${date.getMonth()+1==12?date.getFullYear()+1:date.getFullYear()}`);
+                    }
                 }}
             />  
                 
@@ -229,9 +238,11 @@ export default function Dashboard({data, setData}){
                         type="month"
                         value={parseDate(expansesDate).toISOString().split('T')[0].substring(0, parseDate(expansesDate).toISOString().split('T')[0].length-3)}
                         onChange={(e) => {
-                            console.log(parseDate(expansesDate).toISOString().split('T')[0].substring(0, parseDate(expansesDate).toISOString().split('T')[0].length-3))
-                            const date = new Date(e.target.value);
-                            setExpansesDate(`${(date.getMonth()+1)%12}/01/${date.getMonth()+1==12?date.getFullYear()+1:date.getFullYear()}`);
+                            if(e.target.value){
+
+                                const date = new Date(e.target.value);
+                                setExpansesDate(`${(date.getMonth()+1)%12}/01/${date.getMonth()+1==12?date.getFullYear()+1:date.getFullYear()}`);
+                            }
                         }}
                     />
                     {data.storage[expansesDate] ? <>{data.storage[expansesDate].expanses.length>0 ? <div ref={barchartRef} style={{width: "440px", height:"450px"}}></div>:<p>No data</p>}</>:<p>No data</p>}
