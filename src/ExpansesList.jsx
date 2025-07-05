@@ -2,53 +2,53 @@ import Expanse from "./Expanse"
 import Group from "./Group"
 
 
-function handleInRoot(inRoot, type){
-    let newArr = []
-    for (const element of inRoot) {
-        if(element.includes(type)){
-            newArr.push(element.substring(type.length))
+export default function ExpansesList({data, setData}){
+    function handleInRoot(inRoot, type){
+        let newArr = []
+        for (const element of inRoot) {
+            if(element.includes(type)){
+                newArr.push(element.substring(type.length))
+            }
         }
+        return newArr
     }
-    return newArr
-}
-function createExpansesList2(expIdArray, expanses, groupArray){
-    let elements = []
-    let expansesArray = []
-    let expPointer = 0
-    let groupPointer = 0
-    for (const element of expIdArray) {
-        expansesArray.push(expanses[element])
-    }
-    expansesArray.sort((a, b) => parseInt(b.valor)-parseInt(a.valor))
-    groupArray.sort((a, b) => b.valor-a.valor)
-    while(expPointer<expansesArray.length || groupPointer<groupArray.length){
-        if(expPointer<expansesArray.length&&groupPointer<groupArray.length){
-            if(parseInt(expansesArray[expPointer].valor)>groupArray[groupPointer].valor){
+    function createExpansesList2(expIdArray, expanses, groupArray){
+        let elements = []
+        let expansesArray = []
+        let expPointer = 0
+        let groupPointer = 0
+        for (const element of expIdArray) {
+            expansesArray.push(expanses[element])
+        }
+        expansesArray.sort((a, b) => parseInt(b.valor)-parseInt(a.valor))
+        groupArray.sort((a, b) => b.valor-a.valor)
+        while(expPointer<expansesArray.length || groupPointer<groupArray.length){
+            if(expPointer<expansesArray.length&&groupPointer<groupArray.length){
+                if(parseInt(expansesArray[expPointer].valor)>groupArray[groupPointer].valor){
+                    let e = expansesArray[expPointer]
+                    elements.push(<Expanse key={expPointer} data={e.data} categoria={e.categoria} descricao={e.descricao} nome={e.nome} valor={e.valor} setData={setData}/>)
+                    expPointer++
+                    continue
+                }
+                let e = groupArray[groupPointer]
+                elements.push(<Group key={groupPointer+expansesArray.length} nome={e.nome} descricao={e.descricao} valor={e.valor} data={data} setData={setData} list={createExpansesList2(e.children.expanses, expanses, e.children.groups)}/>)
+                groupPointer++
+                continue
+            }
+            if(expPointer<expansesArray.length){
                 let e = expansesArray[expPointer]
-                elements.push(<Expanse key={expPointer} data={e.data} categoria={e.categoria} descricao={e.descricao} nome={e.nome} valor={e.valor}/>)
+                elements.push(<Expanse key={expPointer} data={e.data} categoria={e.categoria} descricao={e.descricao} nome={e.nome} valor={e.valor} setData={setData}/>)
                 expPointer++
                 continue
             }
             let e = groupArray[groupPointer]
-            elements.push(<Group key={groupPointer+expansesArray.length} nome={e.nome} descricao={e.descricao} valor={e.valor} list={createExpansesList2(e.children.expanses, expanses, e.children.groups)}/>)
+            elements.push(<Group key={groupPointer+expansesArray.length} nome={e.nome} descricao={e.descricao} valor={e.valor} data={data} setData={setData} list={createExpansesList2(e.children.expanses, expanses, e.children.groups)}/>)
             groupPointer++
             continue
         }
-        if(expPointer<expansesArray.length){
-            let e = expansesArray[expPointer]
-            elements.push(<Expanse key={expPointer} data={e.data} categoria={e.categoria} descricao={e.descricao} nome={e.nome} valor={e.valor}/>)
-            expPointer++
-            continue
-        }
-        let e = groupArray[groupPointer]
-        elements.push(<Group key={groupPointer+expansesArray.length} nome={e.nome} descricao={e.descricao} valor={e.valor} list={createExpansesList2(e.children.expanses, expanses, e.children.groups)}/>)
-        groupPointer++
-        continue
+    
+        return <>{elements}</>
     }
-
-    return <>{elements}</>
-}
-export default function ExpansesList({data}){
     
     
     

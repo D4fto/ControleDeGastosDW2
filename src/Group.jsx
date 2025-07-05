@@ -1,6 +1,11 @@
 import { useState } from "react"
-export default function Group({nome, descricao, valor, list}){
+
+
+
+export default function Group({nome, descricao, valor, list, data, setData}){
     const [opened, setOpened] = useState(false)
+
+
     return(<li className="Grupo">
         <div className="NomePreco NomePrecoGrupo">
             <p>

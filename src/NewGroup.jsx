@@ -4,31 +4,47 @@ import ChooseGroup from "./ChooseGroup"
 import "./PopUp.css"
 
 
-function findGroupToAdd(address, groups, nome, descricao) {
+function verifyDisponibility(group, nome, modifier){
+  let x = false
+  for (const element of group.children.groups) {
+    if(element.nome==nome+(modifier>0?modifier:"")){
+      x=true 
+      modifier++
+    }
+  }
+  if(x){
+    return verifyDisponibility(group, nome, modifier)
+  }
+  return modifier
+}
+
+function findGroupToAdd(address, groups, nome, descricao, originalAddress) {
     for (const element of groups) {
       if (element.nome == address[0]) {
         address.shift();
-        addIdToGroup(address, element, nome, descricao);
+        addIdToGroup(address, element, nome, descricao, originalAddress);
         return;
       }
     }
     console.error(address);
     console.error(`Grupo não encontrado`);
 }
-function addIdToGroup(address, group, nome, descricao) {
+function addIdToGroup(address, group, nome, descricao, originalAddress) {
     if (!address.length) {
+      let modifier = verifyDisponibility(group, nome, 0)
         group.children.groups.push({
-            nome: nome,
+            nome: nome+(modifier?modifier:""),
             descricao: descricao,
             valor: 0,
             children: {
             groups: [],
             expanses: [],
-            },
+          },
+          address: originalAddress
         });
       return;
     }
-    findGroupToAdd(address, group.children.groups, nome, descricao);
+    findGroupToAdd(address, group.children.groups, nome, descricao, originalAddress);
   }
 
 export default function NewGroup({data, setData, setControl}){
@@ -51,24 +67,24 @@ export default function NewGroup({data, setData, setControl}){
             descricao: descricao,
             valor: 0,
             children: {
-            groups: [],
-            expanses: [],
+              groups: [],
+              expanses: [],
             },
+            address: "/"
         });
         } else {
           findGroupToAdd(
             group.substring(1, group.length - 1).split("/"),
             newData.groups[type],
             nome,
-            descricao
+            descricao,
+            group
           );
         }
         setData(newData);
         setControl(false);
     }
-    function verifySend(){
 
-    }
     return(<div className="PopUp novoGrupo">
         <button onClick={()=>{setControl(false)}}><i className="bi bi-x"></i></button>
         <h1>Novo Grupo</h1>

@@ -1,5 +1,5 @@
 import { useState } from "react"
-export default function Expanse({ nome, valor, descricao, categoria, data }) {
+export default function Expanse({ nome, valor, descricao, categoria, data, setData}) {
     const [opened, setOpened] = useState(false)
     return (
         <li className="Despesa">

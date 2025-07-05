@@ -168,7 +168,7 @@ function App() {
         </div>
       </nav>
       <div className="Conteudo">
-        <ExpansesList data={data} />
+        <ExpansesList data={data} setData={setData}/>
         <main>
           {variavel === "dashboard" && <>
             <Dashboard data={data} setData={setData}/>
