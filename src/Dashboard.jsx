@@ -9,6 +9,11 @@ function addOneTMonth(str){
     return `${parseInt(month)+1}/01/${year}`
 
 }
+function generateHex() {
+    const num = Math.floor(Math.random() * 256);
+    const hex = num.toString(16).padStart(2, '0');
+    return '#' + hex + hex + hex;
+}
 function subOneToMonth(str){
     const [month, , year] = str.split('/');
     if(month=="0"){
@@ -62,21 +67,52 @@ export default function Dashboard({data, setData}){
     }, [categoriesDate, expansesDate, totalDate])
 
 
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-    google.charts.setOnLoadCallback(drawBarChart);
-    google.charts.setOnLoadCallback(drawLineChart);
+    useEffect(() => {
+        google.charts.load('current', { packages: ['corechart'] });
+        google.charts.setOnLoadCallback(() => {
+            drawChart();
+            drawBarChart();
+            drawLineChart();
+        });
+    }, []);
+    // Pie Chart
+    useEffect(() => {
+        if (google.visualization && google.visualization.PieChart) {
+            drawChart();
+        }
+    }, [categoriesDate]);
+
+    // Bar Chart
+    useEffect(() => {
+        if(data.storage[expansesDate]){
+
+            if (google.visualization && google.visualization.ColumnChart && data.storage[expansesDate].expanses.length>0) {
+                drawBarChart();
+            }
+        }
+    }, [expansesDate]);
+
+    // Line Chart
+    useEffect(() => {
+        if (google.visualization && google.visualization.LineChart && filterByYear().length>0) {
+            drawLineChart();
+        }
+    }, [yearDate]);
     // console.log("odihfdihfdudfifidudf")
     // console.log([...data.storage[categoriesDate].expanses])
     function drawChart() {
         let array = Object.entries(data.storage[categoriesDate].categoryMap)
+        
         array.unshift(["Categoria", "valor"])
+        console.log(array)
 
         let charData = google.visualization.arrayToDataTable(array);
 
         let options = {
             title: 'Gasto por categoria',
-            legend: {position: "bottom"}
+            legend: {position: "bottom"},
+            is3D: true,
+            colors: ["#A4A4A4", "878D96", "2F2F2F"]
         };
 
         let chart = new google.visualization.PieChart(piechartRef.current);
@@ -95,7 +131,7 @@ export default function Dashboard({data, setData}){
             array.length=5
         }
         for (let i = 0; i < array.length; i++) {
-            array[i].push(i%2?"#d9d9d9":"#757575")
+            array[i].push(i%2?"#d9d9d9":"#9c9c9c")
         }
         array.unshift(["Categoria", "valor", {role: "style"}])
         console.log(array)
@@ -103,8 +139,14 @@ export default function Dashboard({data, setData}){
         let charData = google.visualization.arrayToDataTable(array);
 
         let options = {
-            title: 'Gasto por categoria',
-            legend: {position: "bottom"}
+            title: 'Maiores despesas do mês',
+            legend: {position: "bottom"},
+            animation: {
+                startup: true,
+                duration: 1000,
+                easing: "out",
+            },
+            colors: ["#d9d9d9"]
         };
 
         let chart = new google.visualization.ColumnChart(barchartRef.current);
@@ -133,8 +175,15 @@ export default function Dashboard({data, setData}){
         let charData = google.visualization.arrayToDataTable(array);
 
         let options = {
-            title: 'Gasto por categoria',
-            legend: {position: "bottom"}
+            title: 'Gasto anual',
+            legend: {position: "bottom"},
+            animation: {
+                startup: true,
+                duration: 1000,
+                easing: "out"
+            },
+            colors: ["#9c9c9c"]
+
         };
 
         let chart = new google.visualization.LineChart(linechartRef.current);

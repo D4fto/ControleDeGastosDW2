@@ -163,8 +163,8 @@ function App() {
 
         <div className="MenuHorizontal_DD">
           
-          <button onClick={() => setvariavel("despesas")}>Despesas</button>
-          <button onClick={() => setvariavel("dashboard")}>Dashboard</button>
+          <button onClick={() => setvariavel("despesas")} className={["despesas", "novadespesa", "editardespesa"].includes(variavel)?"Underline":""}>Despesas</button>
+          <button onClick={() => setvariavel("dashboard") } className={variavel=="dashboard"?"Underline":""}>Dashboard</button>
         </div>
       </nav>
       <div className="Conteudo">
@@ -175,35 +175,42 @@ function App() {
           </>}
           {variavel === "despesas" && (
             <>
-              <div className="Novo">
-                <h1>Novo</h1>
-                <div className="FilhoDoNovo">
-                  <div className="NetoDoNovo">
-                    <PopUpButton
-                      title={"Grupo"}
-                      icon={<i className="bi bi-folder-plus"></i>}
-                      PopUp={NewGroup}
-                      props={{ data: data, setData: setData }}
-                    />
+              <div className="flex">
+                <div>
+                  <div className="Novo">
+                    <h1>Novo</h1>
+                    <div className="FilhoDoNovo">
+                      <div className="NetoDoNovo">
+                        <PopUpButton
+                          title={"Grupo"}
+                          icon={<i className="bi bi-folder-plus"></i>}
+                          PopUp={NewGroup}
+                          props={{ data: data, setData: setData }}
+                        />
+                      </div>
+                      <div className="NetoDoNovo">
+                        <button onClick={() => setvariavel("novadespesa")}>
+                          <i class="bi bi-currency-dollar"></i>
+                          Despesa
+                        </button>
+                      </div>
+                      <div className="NetoDoNovo">
+                        <PopUpButton
+                          title={"Categoria"}
+                          icon={<i className="bi bi-bookmark"></i>}
+                          PopUp={NewCategory}
+                          props={{ data: data, setData: setData }}
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div className="NetoDoNovo">
-                    <button onClick={() => setvariavel("novadespesa")}>
-                      <i class="bi bi-currency-dollar"></i>
-                      Despesa
-                    </button>
-                  </div>
-                  <div className="NetoDoNovo">
-                    <PopUpButton
-                      title={"Categoria"}
-                      icon={<i className="bi bi-bookmark"></i>}
-                      PopUp={NewCategory}
-                      props={{ data: data, setData: setData }}
-                    />
-                  </div>
+                  <CategoryList data={data}/>
+                </div>
+                <div>
+                  <p>Preço do BitCoin brasileiro: R$ {valorBit}</p>
+                  {/* <iframe src="https://marceloast.github.io/Trabalho-final-de-DW-Pedro-Eduardo-e-Marcelo-/" frameborder="0" style={{width: "100%"}}></iframe> */}
                 </div>
               </div>
-              <CategoryList data={data}/>
-              <p>Preço do BitCoin brasileiro: R$ {valorBit}</p>
             </>
           )}
           {variavel === "novadespesa" && (
