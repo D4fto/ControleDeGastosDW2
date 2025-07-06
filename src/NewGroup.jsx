@@ -18,18 +18,18 @@ function verifyDisponibility(group, nome, modifier){
   return modifier
 }
 
-function findGroupToAdd(address, groups, nome, descricao, originalAddress) {
+function findGroupToAdd(address, groups, nome, descricao, originalAddress, type) {
     for (const element of groups) {
       if (element.nome == address[0]) {
         address.shift();
-        addIdToGroup(address, element, nome, descricao, originalAddress);
+        addIdToGroup(address, element, nome, descricao, originalAddress, type);
         return;
       }
     }
     console.error(address);
     console.error(`Grupo não encontrado`);
 }
-function addIdToGroup(address, group, nome, descricao, originalAddress) {
+function addIdToGroup(address, group, nome, descricao, originalAddress, type) {
     if (!address.length) {
       let modifier = verifyDisponibility(group, nome, 0)
         group.children.groups.push({
@@ -40,11 +40,12 @@ function addIdToGroup(address, group, nome, descricao, originalAddress) {
             groups: [],
             expanses: [],
           },
-          address: originalAddress
+          address: originalAddress,
+          type: type
         });
       return;
     }
-    findGroupToAdd(address, group.children.groups, nome, descricao, originalAddress);
+    findGroupToAdd(address, group.children.groups, nome, descricao, originalAddress, type);
   }
 
 export default function NewGroup({data, setData, setControl}){
@@ -70,7 +71,8 @@ export default function NewGroup({data, setData, setControl}){
               groups: [],
               expanses: [],
             },
-            address: "/"
+            address: "/",
+            type:type
         });
         } else {
           findGroupToAdd(
@@ -78,7 +80,8 @@ export default function NewGroup({data, setData, setControl}){
             newData.groups[type],
             nome,
             descricao,
-            group
+            group,
+            type
           );
         }
         setData(newData);

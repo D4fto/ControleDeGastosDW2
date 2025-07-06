@@ -43,6 +43,8 @@ function initializeData() {
                   groups: [],
                   expanses: [2],
                 },
+                type: "fixo",
+                address: "/Seguros/"
               },
               {
                 nome: "Motos",
@@ -52,10 +54,14 @@ function initializeData() {
                   groups: [],
                   expanses: [3],
                 },
+                type: "fixo",
+                address: "/Seguros/"
               },
             ],
             expanses: [4],
           },
+          address: "/",
+          type: "fixo",
         },
       ],
       variavel: [
@@ -67,6 +73,8 @@ function initializeData() {
             groups: [],
             expanses: [1, 2],
           },
+          address: "/",
+          type: "variavel",
         },
       ],
     },

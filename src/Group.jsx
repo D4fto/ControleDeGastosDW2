@@ -2,9 +2,15 @@ import { useState } from "react"
 
 
 
-export default function Group({nome, descricao, valor, list, data, setData}){
+export default function Group({nome, descricao, valor, list, data, setData, address}){
     const [opened, setOpened] = useState(false)
 
+    function deleteGroup(){
+        let adr = []
+        if(address!="/"){
+            adr = address.substring(1, address.length - 1).split("/")
+        }
+    }
 
     return(<li className="Grupo">
         <div className="NomePreco NomePrecoGrupo">
@@ -24,7 +30,7 @@ export default function Group({nome, descricao, valor, list, data, setData}){
                         <div className="DescricaoGrupo">{descricao}</div>
                         <div className="LapisLixeira">
                             <i class="bi bi-pencil-fill"></i>
-                            <i class="bi bi-trash3-fill"></i>
+                            <i class="bi bi-trash3-fill" onClick={()=>deleteGroup()}></i>
                         </div>
                     </div>
                 </div>
