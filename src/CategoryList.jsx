@@ -1,5 +1,30 @@
 import "./CategoryList.css";
-export default function CategoryList({data}){
+export default function CategoryList({data, setData}){
+    function excluiCategoria(nomeCategoria){
+        if(nomeCategoria=="Sem categoria"){
+            return
+        }
+        const newData= {...data}
+        for (const key in newData.expanses.fixo) {
+        if (key!="maxId") {
+            const element = newData.expanses.fixo[key];
+            if (element.categoria == nomeCategoria){
+                element.categoria="Sem categoria"
+            }
+            }
+        }
+        for (const key in newData.expanses.variavel) {
+            if (key!="maxId") {
+                const element = newData.expanses.variavel[key];
+            if (element.categoria == nomeCategoria){
+                element.categoria="Sem categoria"
+                } 
+                }
+            }
+
+        newData.categories=newData.categories.filter((y)=>y!=nomeCategoria)
+        setData(newData)
+    }
     const pin = {}
     const values = {}
     for (const element of data.categories) {
@@ -32,7 +57,7 @@ export default function CategoryList({data}){
                     return(
                         <div>
                             <div className="flex Categoria">
-                                <h4>{e} - R$ {String(values[e]).padStart(3, "0").substring(0, String(values[e]).padStart(3, "0").length - 2)},{String(values[e]).padStart(3, "0").substring(String(values[e]).padStart(3, "0").length - 2)}<i className="bi bi-trash3-fill"></i></h4>
+                                <h4>{e} - R$ {String(values[e]).padStart(3, "0").substring(0, String(values[e]).padStart(3, "0").length - 2)},{String(values[e]).padStart(3, "0").substring(String(values[e]).padStart(3, "0").length - 2)}{e!="Sem categoria"?<i onClick={(no)=>excluiCategoria(e)} className="bi bi-trash3-fill"></i>:<></>}</h4>
                                 <i className="bi bi-caret-down-fill"></i>
                             </div>
                             <dir className="UlCategoria">
