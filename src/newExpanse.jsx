@@ -92,7 +92,7 @@ export default function NewExpanse({ data, setData, setVariavel }) {
             placeholder="Descrição legal"
           ></textarea>{" "}
           
-          <div className="ParenteBarra"style={{ position: "relative", width: "fit-content" }}>
+          <div className="ParenteBarra"style={{ position: "relative"}}>
             <label htmlFor="local">Local: </label>
             <PopUpButton
               id="local"
