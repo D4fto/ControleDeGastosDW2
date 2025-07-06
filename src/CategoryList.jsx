@@ -25,7 +25,7 @@ export default function CategoryList({data}){
         pin[element].sort((a,b)=>parseInt(b.valor)-parseInt(a.valor))
     }
     return(
-        <div>
+        <div className="ListaCategoria">
             <h1 className="h1Categoria">Categorias</h1>
             <div className="CaixaCategoria">
                 {data.categories.map((e)=>{
@@ -35,13 +35,15 @@ export default function CategoryList({data}){
                                 <h4>{e} - R$ {String(values[e]).padStart(3, "0").substring(0, String(values[e]).padStart(3, "0").length - 2)},{String(values[e]).padStart(3, "0").substring(String(values[e]).padStart(3, "0").length - 2)}<i className="bi bi-trash3-fill"></i></h4>
                                 <i className="bi bi-caret-down-fill"></i>
                             </div>
-                            <ul>
+                            <dir className="UlCategoria">
+                                <ul>
                                 {pin[e].map((t)=>(
                                 <li>
                                     <p>{t.nome} - R$ {String(t.valor).padStart(3, "0").substring(0, String(t.valor).padStart(3, "0").length - 2)},{String(t.valor).padStart(3, "0").substring(String(t.valor).padStart(3, "0").length - 2)}</p>
                                 </li>
                                 ))}
                             </ul>
+                            </dir>
                         </div>
                     )
                 })}

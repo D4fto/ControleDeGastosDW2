@@ -226,6 +226,16 @@ button {
   flex-direction: column;
 }
 
+.VoDoNovo{
+  height: 100%;
+}
+
+.PaiDoNovo{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .NetoDoNovo {
   position: relative;
   display: flex;
@@ -264,3 +274,4 @@ main {
 .Underline{
   text-decoration: underline;
 }
+

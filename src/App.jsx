@@ -175,8 +175,8 @@ function App() {
           </>}
           {variavel === "despesas" && (
             <>
-              <div className="flex">
-                <div>
+              <div className="flex VoDoNovo">
+                <div className="PaiDoNovo">
                   <div className="Novo">
                     <h1>Novo</h1>
                     <div className="FilhoDoNovo">
