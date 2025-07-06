@@ -212,7 +212,7 @@ function App() {
                       </div>
                     </div>
                   </div>
-                  <CategoryList data={data}/>
+                  <CategoryList data={data} setData={setData}/>
                 </div>
                 <div>
                   <p>Preço do BitCoin brasileiro: R$ {valorBit}</p>
