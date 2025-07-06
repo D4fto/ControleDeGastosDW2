@@ -229,8 +229,14 @@ function App() {
                   <CategoryList data={data} setData={setData}/>
                 </div>
                 <div>
-                  <p>Preço do BitCoin brasileiro: R$ {valorBit}</p>
-                  <iframe src="https://marceloast.github.io/Trabalho-final-de-DW-Pedro-Eduardo-e-Marcelo-/" frameborder="0" style={{width: "600px", height: "800px"}}></iframe>
+                  <p className="PrecoBitCoin">Preço do BitCoin brasileiro: R$ {valorBit}</p>
+                  <div className="Celular">
+                    <div className="TopBar flex">
+                      <h1>🔴🟡🟢</h1>
+                      <h1><i className="bi bi-x"></i></h1>
+                    </div>
+                    <iframe src="https://marceloast.github.io/Trabalho-final-de-DW-Pedro-Eduardo-e-Marcelo-/" frameborder="0"></iframe>
+                  </div>
                 </div>
               </div>
             </>

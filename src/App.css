@@ -208,8 +208,6 @@ button {
   border: .0625rem solid #d9d9d9;
   text-align: center;
   border-radius: .3125rem;
-  max-height: 8.125rem;
-  max-width: 20.625rem;
 }
 
 .FilhoDoNovo {
@@ -229,12 +227,20 @@ button {
 
 .VoDoNovo{
   height: 100%;
+  display: flex;
+  gap: 15px;
+  >div:last-child{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .PaiDoNovo{
   height: 100%;
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 
 .NetoDoNovo {
@@ -276,3 +282,17 @@ main {
   text-decoration: underline;
 }
 
+.PrecoBitCoin{
+  background-color: #d9d9d9;
+  
+}
+.Celular{
+    height: 100%;
+    iframe{
+      height: 100%;
+      width: 100%;
+    }
+}
+.TopBar{
+  justify-content: space-between;
+}

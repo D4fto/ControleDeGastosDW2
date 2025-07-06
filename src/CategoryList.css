@@ -5,28 +5,28 @@
 }
 
 .CaixaCategoria{
-    border: 1px solid #d9d9d9;
     height: 100%;
-    max-width: 423px;
-    max-width: 423px;
-    padding: 10px;
+    
+    padding: .625rem;
 }
 
 .h1Categoria{
-    border: 1px solid #d9d9d9;
+    border-top-right-radius: .3125rem;
+    border-top-left-radius: .3125rem;
+    padding: .625rem .9375rem;
     background-color: #d9d9d9;
 }
 
 .ListaCategoria{
     height: 100%;
     display: flex;
+    border-radius: .3125rem;
     flex-direction: column;
+    border: .0625rem solid #d9d9d9;
 }
 
 .UlCategoria{
-<<<<<<< HEAD
-    padding-left: 35px;
-=======
+
     list-style: circle;
     display: grid;
     grid-template-rows: 0fr;
@@ -48,5 +48,4 @@
 }
 .bi-trash3-fill{
     cursor: pointer;
->>>>>>> 3cfbdb635f36d9b094356f053b0f26457365156b
 }
