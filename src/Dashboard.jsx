@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect} from "react";
 import SaveMonth from "./SaveMonth"
+import "./Dashboard.css"
 function parseDate(str) {
     const [month, , year] = str.split('/');
     return new Date(`${year}-${String(parseInt(month)+1).padStart(2, '0')}`);
@@ -9,10 +10,8 @@ function addOneTMonth(str){
     return `${parseInt(month)+1}/01/${year}`
 
 }
-function generateHex() {
-    const num = Math.floor(Math.random() * 256);
-    const hex = num.toString(16).padStart(2, '0');
-    return '#' + hex + hex + hex;
+function handleValor(valor){
+    return String(valor).padStart(3, "0").substring(0, String(valor).padStart(3, "0").length - 2)+","+String(valor).padStart(3, "0").substring(String(valor).padStart(3, "0").length - 2)
 }
 function subOneToMonth(str){
     const [month, , year] = str.split('/');
@@ -194,9 +193,9 @@ export default function Dashboard({data, setData}){
         chart.draw(charData, options);
     }
     return(<>
-        <div className="flex">
+        <div className="flex Dashboard">
             <div>
-                <div style={{border:".0625rem solid #d9d9d9", width: "22.25rem", height:"27rem"}}>
+                <div style={{border:".0625rem solid #d9d9d9", width: "22.25rem", minHeight:"25rem"}} className="ContainerGrafico">
                     <input
                         type="month"
                         value={parseDate(categoriesDate).toISOString().split('T')[0].substring(0, parseDate(categoriesDate).toISOString().split('T')[0].length-3)}
@@ -210,31 +209,37 @@ export default function Dashboard({data, setData}){
                     />
                     <div ref={piechartRef} style={{width: "100%", height:"85%"}}></div>
                 </div>
-                <SaveMonth data={data} setData={setData}/>
-                <button onClick={limparMes}>LIMPAR MÊS</button>
-                <input
-                type="month"
-                value={parseDate(totalDate).toISOString().split('T')[0].substring(0, parseDate(totalDate).toISOString().split('T')[0].length-3)}
-                onChange={(e) => {
-                    if(e.target.value){
-                        
-                        const date = new Date(e.target.value);
-                        setTotalDate(`${(date.getMonth()+1)%12}/01/${date.getMonth()+1==12?date.getFullYear()+1:date.getFullYear()}`);
-                    }
-                }}
-            />  
-                
-                <div>{data.storage[totalDate]?<p>
-                    <>{data.storage[totalDate].total} </>
-                    {data.storage[subOneToMonth(totalDate)].expanses.length>0 && data.storage[subOneToMonth(totalDate)]?
-                        <span className={data.storage[totalDate].total>data.storage[subOneToMonth(totalDate)]?"Maior":"Menor"}><i className="bi bi-caret-down-fill"></i> {((data.storage[totalDate].total/data.storage[subOneToMonth(totalDate)].total-1)*100).toFixed(2)}%</span>:<></>
-                    }</p>:"No data"
+                <div className="DashboardButtons flex">
+                    <SaveMonth data={data} setData={setData}/>
+                    <button onClick={limparMes}>LIMPAR MÊS</button>
+                </div>
+                <div className="Total">
+                    <input
+                    type="month"
+                    value={parseDate(totalDate).toISOString().split('T')[0].substring(0, parseDate(totalDate).toISOString().split('T')[0].length-3)}
+                    onChange={(e) => {
+                        if(e.target.value){
                     
-                }
+                            const date = new Date(e.target.value);
+                            setTotalDate(`${(date.getMonth()+1)%12}/01/${date.getMonth()+1==12?date.getFullYear()+1:date.getFullYear()}`);
+                        }
+                    }}/>
+                    
+                    <div>
+                        <p>Total Gasto Esse Mês</p>
+                        {data.storage[totalDate]?<p>
+                        
+                        <>R$ {handleValor(data.storage[totalDate].total)} </>
+                        {data.storage[subOneToMonth(totalDate)].expanses.length>0 && data.storage[subOneToMonth(totalDate)]?
+                            <span className={data.storage[totalDate].total>data.storage[subOneToMonth(totalDate)].total?"RelacaoMesAnterior Aumentou":"RelacaoMesAnterior Abaixou"}><i className="bi bi-caret-down-fill"></i> {((data.storage[totalDate].total/data.storage[subOneToMonth(totalDate)].total-1)*100).toFixed(2)}%</span>:<></>
+                        }</p>:"No data"
+                    
+                    }
+                    </div>
                 </div>
             </div>
             <div>
-                <div style={{border:".0625rem solid #d9d9d9", width: "29.1875rem", height:"21.0625rem"}}>
+                <div style={{border:".0625rem solid #d9d9d9", width: "29.1875rem", height:"21.0625rem"}} className="ContainerGrafico">
                     <input
                         type="month"
                         value={parseDate(expansesDate).toISOString().split('T')[0].substring(0, parseDate(expansesDate).toISOString().split('T')[0].length-3)}
@@ -248,7 +253,7 @@ export default function Dashboard({data, setData}){
                     />
                     {data.storage[expansesDate] ? <>{data.storage[expansesDate].expanses.length>0 ? <div ref={barchartRef} style={{width: "100%", height:"85%"}}></div>:<p>No data</p>}</>:<p>No data</p>}
                 </div>
-                <div style={{border:".0625rem solid #d9d9d9", width: "29.1875rem", height:"17.125rem"}}>
+                <div style={{border:".0625rem solid #d9d9d9", width: "29.1875rem", height:"17.125rem"}} className="ContainerGrafico">
                     <input
                         type="number" id="ano" name="ano" min="1900" max="2100" step="1"
                         value={yearDate}

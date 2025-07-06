@@ -1,5 +1,10 @@
 import "./CategoryList.css";
+import { useState } from "react";
 export default function CategoryList({data, setData}){
+    const [abertos, setAbertos] = useState({});
+    function toggleCategoria(categoria) {
+        setAbertos(x => ({ ...x, [categoria]: !x[categoria] }));
+    }
     function excluiCategoria(nomeCategoria){
         if(nomeCategoria=="Sem categoria"){
             return
@@ -54,13 +59,14 @@ export default function CategoryList({data, setData}){
             <h1 className="h1Categoria">Categorias</h1>
             <div className="CaixaCategoria">
                 {data.categories.map((e)=>{
+                    const isOpen = abertos[e] || false;
                     return(
                         <div>
                             <div className="flex Categoria">
                                 <h4>{e} - R$ {String(values[e]).padStart(3, "0").substring(0, String(values[e]).padStart(3, "0").length - 2)},{String(values[e]).padStart(3, "0").substring(String(values[e]).padStart(3, "0").length - 2)}{e!="Sem categoria"?<i onClick={(no)=>excluiCategoria(e)} className="bi bi-trash3-fill"></i>:<></>}</h4>
-                                <i className="bi bi-caret-down-fill"></i>
+                                <i className={"bi bi-caret-down-fill"+(isOpen?" Aberto":"")} onClick={() => toggleCategoria(e)}></i>
                             </div>
-                            <dir className="UlCategoria">
+                            <div className={"UlCategoria"+(isOpen?" Aberto":"")}>
                                 <ul>
                                 {pin[e].map((t)=>(
                                 <li>
@@ -68,7 +74,7 @@ export default function CategoryList({data, setData}){
                                 </li>
                                 ))}
                             </ul>
-                            </dir>
+                            </div>
                         </div>
                     )
                 })}
