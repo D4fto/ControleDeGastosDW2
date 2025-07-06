@@ -56,8 +56,8 @@ export default function NewExpanse({ data, setData, setVariavel }) {
       <div className="Caixa">
         <form className="Form" onSubmit={send} action="">
           <label htmlFor="nome">Nome: </label>
-          <br />
-          <input
+          
+          <input className="DNome"
             onChange={(e) => {
               changeObject("nome", e.target.value);
             }}
@@ -66,10 +66,10 @@ export default function NewExpanse({ data, setData, setVariavel }) {
             placeholder="Nome"
             required
           />{" "}
-          <br />
+          
           <label htmlFor="valor">valor: </label>
-          <br />
-          <input
+          
+          <input className="DValor"
             onChange={(e) => {
               changeObject("valor", e.target.value);
             }}
@@ -78,10 +78,10 @@ export default function NewExpanse({ data, setData, setVariavel }) {
             placeholder="R$ 00.00"
             required
           />{" "}
-          <br />
+          
           <label htmlFor="descricao">Descrição: </label>
-          <br />
-          <textarea
+          
+          <textarea className="DCaixa"
             onChange={(e) => {
               changeObject("descricao", e.target.value);
             }}
@@ -89,9 +89,9 @@ export default function NewExpanse({ data, setData, setVariavel }) {
             id="descricao"
             placeholder="Descrição legal"
           ></textarea>{" "}
-          <br />
+          
           <div style={{ position: "relative", width: "fit-content" }}>
-            <label htmlFor="local">Endereço: </label><br />
+            <label htmlFor="local">Local: </label>
             <PopUpButton
               id="local"
               title={group}
@@ -105,9 +105,9 @@ export default function NewExpanse({ data, setData, setVariavel }) {
                 setGroup: setGroup,
               }}
             />
-            <br />
+            
           </div>
-          <div className="DataCategoria">
+          <div className="DataCategoria flex">
             <label htmlFor="data">Data: </label>
             <input
               onChange={(e) => {
@@ -117,23 +117,25 @@ export default function NewExpanse({ data, setData, setVariavel }) {
               type="date"
               required
             />{" "}
-            <br />
-            <label htmlFor="categoria">Categoria: </label>
-            <select
-              onChange={(e) => {
-                changeObject("categoria", e.target.value);
-              }}
-              name=""
-              id="categoria"
-            >
-              {data.categories.map((e, k) => {
-                return (
-                  <option key={k} value={e}>
-                    {e}
-                  </option>
-                );
-              })}
-            </select>
+            
+            <div className="DCategoria flex">
+              <label htmlFor="categoria">Categoria: </label>
+              <select
+                onChange={(e) => {
+                  changeObject("categoria", e.target.value);
+                }}
+                name=""
+                id="categoria"
+              >
+                {data.categories.map((e, k) => {
+                  return (
+                    <option key={k} value={e}>
+                      {e}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
           </div>
           <div className="TipoSubmit">
             <label>
@@ -160,7 +162,7 @@ export default function NewExpanse({ data, setData, setVariavel }) {
               />{" "}
               Variável{" "}
             </label>{" "}
-            <br />
+            
             <button>submit</button>
           </div>
         </form>

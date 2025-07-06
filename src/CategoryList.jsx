@@ -1,3 +1,4 @@
+import "./CategoryList.css";
 export default function CategoryList({data}){
     const pin = {}
     const values = {}
@@ -25,15 +26,15 @@ export default function CategoryList({data}){
     }
     return(
         <div>
-            <h1>Categorias</h1>
-            <div>
+            <h1 className="h1Categoria">Categorias</h1>
+            <div className="CaixaCategoria">
                 {data.categories.map((e)=>{
                     return(
                         <div>
-                            <ddddiv>
-                                <h4>{e} - R$ {String(values[e]).padStart(3, "0").substring(0, String(values[e]).padStart(3, "0").length - 2)},{String(values[e]).padStart(3, "0").substring(String(values[e]).padStart(3, "0").length - 2)}</h4>
-                                <i className="bi bi-trash3-fill"></i>
-                            </ddddiv>
+                            <div className="flex Categoria">
+                                <h4>{e} - R$ {String(values[e]).padStart(3, "0").substring(0, String(values[e]).padStart(3, "0").length - 2)},{String(values[e]).padStart(3, "0").substring(String(values[e]).padStart(3, "0").length - 2)}<i className="bi bi-trash3-fill"></i></h4>
+                                <i className="bi bi-caret-down-fill"></i>
+                            </div>
                             <ul>
                                 {pin[e].map((t)=>(
                                 <li>
