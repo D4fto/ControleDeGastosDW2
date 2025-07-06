@@ -1,27 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
-.NovaDespesa {
-  > h1 {
-    background-color: #d9d9d9;
-    font-weight: 500;
-    text-align: center;
-    padding: .625rem;
-    height: 3.125rem;
-  }
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inria Sans', sans-serif;
 }
 
 .NovaDespesa {
   display: flex;
   flex-direction: column;
-  border: .0625rem solid #d9d9d9;
-  border-radius: .3125rem;
+  border: 0.0625rem solid #d9d9d9;
+  border-radius: 0.3125rem;
   max-height: 85dvh;
   min-height: 85dvh;
-  margin-top: .1875rem;
+  margin-top: 0.1875rem;
+  background-color: #fff;
 }
 
-.DataCategoria label {
-  display: flex;
-  width: 70%;
+.NovaDespesa > h1 {
+  background-color: #d9d9d9;
+  font-weight: 500;
+  text-align: center;
+  padding: 0.625rem;
+  height: 3.125rem;
+  font-size: 1.2rem;
+  margin: 0;
+  line-height: 1.875rem;
 }
 
 .Caixa {
@@ -37,28 +40,93 @@
   width: 28.125rem;
 }
 
-.DNome {
-  padding: .9375rem 1.25rem;
-  border-radius: .3125rem;
-  border: #d9d9d9 .0625rem solid;
+.Form label {
+  margin-top: 0.625rem;
+  margin-bottom: 0.25rem;
+  font-weight: 400;
 }
 
+.DNome,
 .DValor {
-  padding: .9375rem 1.25rem;
-  border-radius: .3125rem;
-  border: #d9d9d9 .0625rem solid;
+  padding: 0.9375rem 1.25rem;
+  border-radius: 0.3125rem;
+  border: 0.0625rem solid #d9d9d9;
+  font-size: 1rem;
 }
 
 .DCaixa {
   max-height: 9rem;
   min-height: 9rem;
-  padding: .9375rem 1.25rem;
-  border-radius: .3125rem;
+  padding: 0.9375rem 1.25rem;
+  border-radius: 0.3125rem;
   resize: none;
-  border-radius: .3125rem;
-  border: #d9d9d9 .0625rem solid;
+  border: 0.0625rem solid #d9d9d9;
+  font-size: 1rem;
 }
 
-.DCategoria{
+.DataCategoria {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
 
+.DataCategoria label {
+  display: flex;
+}
+
+.DataCategoria input[type="date"] {
+  padding: 0.5rem;
+  border-radius: 0.3125rem;
+  border: 0.0625rem solid #d9d9d9;
+  font-size: 1rem;
+}
+
+.DCategoria {
+  display: flex;
+  width: 45%;
+}
+
+.DCategoria select {
+  padding: 0.5rem;
+  border-radius: 0.3125rem;
+  border: 0.0625rem solid #d9d9d9;
+  font-size: 1rem;
+}
+
+.TipoSubmit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.TipoSubmit label {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.TipoSubmit button {
+  padding: 0.625rem 1.25rem;
+  background-color: #d9d9d9;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 0.3125rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.TipoSubmit button:hover {
+  background-color: #444;
+}
+
+.ParenteBarra > button{
+  width: 100%;
+}
+
+.ParenteBarra{
+  display: flex;
+  flex-direction: column;
 }
