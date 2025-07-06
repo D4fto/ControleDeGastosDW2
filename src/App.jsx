@@ -216,7 +216,7 @@ function App() {
                 </div>
                 <div>
                   <p>Preço do BitCoin brasileiro: R$ {valorBit}</p>
-                  {/* <iframe src="https://marceloast.github.io/Trabalho-final-de-DW-Pedro-Eduardo-e-Marcelo-/" frameborder="0" style={{width: "600px", height: "800px"}}></iframe> */}
+                  <iframe src="https://marceloast.github.io/Trabalho-final-de-DW-Pedro-Eduardo-e-Marcelo-/" frameborder="0" style={{width: "600px", height: "800px"}}></iframe>
                 </div>
               </div>
             </>

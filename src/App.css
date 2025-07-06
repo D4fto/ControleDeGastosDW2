@@ -151,6 +151,7 @@ body,
 .LapisLixeira {
   display: flex;
   gap: .3125rem;
+  position: relative;
 }
 
 .LapisLixeira i {

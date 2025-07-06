@@ -19,6 +19,11 @@
     bottom: 50%;
     transform: translateX(-50%);
 }
+.PopUp.Portal{
+    left: 0;
+    top: 0;
+    bottom: unset;
+}
 .PopUp h1{
     min-width: max-content;
 }

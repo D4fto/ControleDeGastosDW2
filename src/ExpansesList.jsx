@@ -31,7 +31,7 @@ export default function ExpansesList({data, setData}){
                     continue
                 }
                 let e = groupArray[groupPointer]
-                elements.push(<Group key={groupPointer+expansesArray.length} nome={e.nome} address={e.address}  descricao={e.descricao} valor={e.valor} data={data} setData={setData} list={createExpansesList2(e.children.expanses, expanses, e.children.groups)}/>)
+                elements.push(<Group key={groupPointer+expansesArray.length} nome={e.nome} address={e.address} type={e.type} descricao={e.descricao} valor={e.valor} data={data} setData={setData} list={createExpansesList2(e.children.expanses, expanses, e.children.groups)}/>)
                 groupPointer++
                 continue
             }
@@ -42,7 +42,7 @@ export default function ExpansesList({data, setData}){
                 continue
             }
             let e = groupArray[groupPointer]
-            elements.push(<Group key={groupPointer+expansesArray.length} nome={e.nome} address={e.address} descricao={e.descricao} valor={e.valor} data={data} setData={setData} list={createExpansesList2(e.children.expanses, expanses, e.children.groups)}/>)
+            elements.push(<Group key={groupPointer+expansesArray.length} nome={e.nome} address={e.address} descricao={e.descricao} type={e.type} valor={e.valor} data={data} setData={setData} list={createExpansesList2(e.children.expanses, expanses, e.children.groups)}/>)
             groupPointer++
             continue
         }

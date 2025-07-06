@@ -1,7 +1,9 @@
 import { useState } from "react"
 
+import ReactDOM from 'react-dom'
 
-export default function PopUpButton({title, icon, PopUp, props, above}){
+
+export default function PopUpButton({title, icon, PopUp, props, above, portal}){
     const [control, setControl] = useState(false)
 
     return(<>
@@ -9,6 +11,6 @@ export default function PopUpButton({title, icon, PopUp, props, above}){
             {icon}
             {title}
         </button>
-        {control && <PopUp {...props} setControl = {setControl} above={above}/>}
+        {control && portal ? ReactDOM.createPortal(<PopUp {...props} setControl = {setControl} above={above}/>, document.body):control&&<PopUp {...props} setControl = {setControl} above={above}/>}
     </>)
 }
