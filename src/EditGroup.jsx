@@ -183,28 +183,7 @@ export default function EditGroup({ data, setData, setControl, nomeOriginal, des
             value={descricao}
           ></textarea>
           <br />
-          <div className="radio-options">
-            <label>
-              <input
-                type="radio"
-                name="tipo"
-                id="fixo"
-                onChange={() => setType("fixo")}
-                checked={type === "fixo"}
-              />
-              Fixo
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="tipo"
-                id="variavel"
-                onChange={() => setType("variavel")}
-                checked={type === "variavel"}
-              />
-              Variável
-            </label>
-          </div>
+          
           <div className="flex Barra">
             <PopUpButton
               className="FilhoDoBarra"

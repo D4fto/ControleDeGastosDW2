@@ -54,7 +54,7 @@ export default function NewExpanse({ data, setData, setVariavel }) {
   }
   return (
     <div className="NovaDespesa">
-      <h1>Nova Despesa</h1>
+      <h1>Editar Despesa</h1>
       <div className="Caixa">
         <form className="Form" onSubmit={send} action="">
           <label htmlFor="nome">Nome: </label>

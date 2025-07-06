@@ -2,7 +2,7 @@ import Expanse from "./Expanse"
 import Group from "./Group"
 
 
-export default function ExpansesList({data, setData}){
+export default function ExpansesList({data, setData, setEditingTask}){
     function handleInRoot(inRoot, type){
         let newArr = []
         for (const element of inRoot) {
@@ -26,7 +26,7 @@ export default function ExpansesList({data, setData}){
             if(expPointer<expansesArray.length&&groupPointer<groupArray.length){
                 if(parseInt(expansesArray[expPointer].valor)>groupArray[groupPointer].valor){
                     let e = expansesArray[expPointer]
-                    elements.push(<Expanse key={expPointer} date={e.data} categoria={e.categoria} descricao={e.descricao} nome={e.nome} valor={e.valor} setData={setData} data={data} id={e.id} type={e.tipo}/>)
+                    elements.push(<Expanse key={expPointer} date={e.data} categoria={e.categoria} descricao={e.descricao} nome={e.nome} valor={e.valor} setData={setData} data={data} id={e.id} type={e.tipo} setEditingTask={setEditingTask}/>)
                     expPointer++
                     continue
                 }
@@ -37,7 +37,7 @@ export default function ExpansesList({data, setData}){
             }
             if(expPointer<expansesArray.length){
                 let e = expansesArray[expPointer]
-                elements.push(<Expanse key={expPointer} date={e.data} categoria={e.categoria} descricao={e.descricao} nome={e.nome} valor={e.valor} setData={setData} data={data} id={e.id} type={e.tipo}/>)
+                elements.push(<Expanse key={expPointer} date={e.data} categoria={e.categoria} descricao={e.descricao} nome={e.nome} valor={e.valor} setData={setData} data={data} id={e.id} type={e.tipo} setEditingTask={setEditingTask}/>)
                 expPointer++
                 continue
             }

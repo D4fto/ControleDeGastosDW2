@@ -25,6 +25,11 @@ function addIdToGroup(address, group, id, value) {
 export default function EditExpanse({ data, setData, setVariavel , valoresAntigos}) {
   const [group, setGroup] = useState(valoresAntigos.address);
   const [type, setType] = useState(valoresAntigos.tipo);
+  const [nome, setNome] = useState(valoresAntigos.nome);
+  const [descricao, setDescricao] = useState(valoresAntigos.descricao);
+  const [date, setDate] = useState(valoresAntigos.data);
+  const [valor, setValor] = useState(valoresAntigos.valor);
+  const [categoria, setCategoria] = useState(valoresAntigos.categoria);
 
   
     function updateValues(address, groupList){
@@ -60,6 +65,7 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
   function send(event) {
     event.preventDefault();
     const newData = { ...data };
+    const newExpanse = {}
 
     let id = newData.expanses[type].maxId + 1;
     newData.expanses[type].maxId = id;
@@ -100,8 +106,9 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
           
           <input className="DNome"
             onChange={(e) => {
-              changeObject("nome", e.target.value);
+              setNome(e.target.value);
             }}
+            value={nome}
             id="nome"
             type="text"
             placeholder="Nome"
@@ -112,8 +119,9 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
           
           <input className="DValor"
             onChange={(e) => {
-              changeObject("valor", e.target.value);
+              setValor(e.target.value);
             }}
+            value={valor}
             id="valor"
             type="number"
             placeholder="R$ 00.00"
@@ -124,8 +132,9 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
           
           <textarea className="DCaixa"
             onChange={(e) => {
-              changeObject("descricao", e.target.value);
+              setDescricao(e.target.value);
             }}
+            value={descricao}
             name=""
             id="descricao"
             placeholder="Descrição legal"
@@ -152,8 +161,9 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
             <label htmlFor="data">Data: </label>
             <input
               onChange={(e) => {
-                changeObject("data", e.target.value);
+                setDate(e.target.value);
               }}
+              value={date}
               id="data"
               type="date"
               required
@@ -163,8 +173,9 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
               <label htmlFor="categoria">Categoria: </label>
               <select
                 onChange={(e) => {
-                  changeObject("categoria", e.target.value);
+                  setCategoria(e.target.value);
                 }}
+                value={categoria}
                 name=""
                 id="categoria"
               >
@@ -179,30 +190,7 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
             </div>
           </div>
           <div className="TipoSubmit">
-            <label>
-              <input
-                type="radio"
-                name="tipo"
-                id="fixo"
-                onChange={() => {
-                  setType("fixo");
-                }}
-                checked={type === "fixo"}
-              />{" "}
-              Fixo{" "}
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="tipo"
-                id="variavel"
-                onChange={() => {
-                  setType("variavel");
-                }}
-                checked={type === "variavel"}
-              />{" "}
-              Variável{" "}
-            </label>{" "}
+            
             
             <button>submit</button>
           </div>
@@ -210,17 +198,4 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
       </div>
     </div>
   );
-}
-
-const newExpanse = {
-  id: valoresAntigos.id,
-  nome: valoresAntigos.nome,
-  valor: valoresAntigos.valor,
-  data: valoresAntigos.data,
-  descricao: valoresAntigos.descricao,
-  categoria: valoresAntigos.categoria,
-  tipo: valoresAntigos.tipo,
-};
-function changeObject(atributo, valor) {
-  newExpanse[atributo] = valor;
 }

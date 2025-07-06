@@ -9,6 +9,7 @@ import NewGroup from "./NewGroup";
 import Storage from "./storage";
 import "./App.css";
 import bitcoin from "./bitcoin";
+import EditExpanse from "./EditExpanse";
 
 
 
@@ -164,13 +165,20 @@ function App() {
   const [variavel, setvariavel] = useState(()=>JSON.parse(localStorage.getItem("variavel")));
   const [valorBit, setvalorBit] = useState(0);
   const [celularOpen, setCelularOpen] = useState(false);
-  // const [editingTask, setEditingTask] = useEffect()
+  const [editingTask, setEditingTask] = useState({})
   const [data, setData] = useState(() =>
     JSON.parse(localStorage.getItem("data"))
   );
   useEffect(() => {
     updateDataStorage("data",data);
   }, [data]);
+  useEffect(()=>{
+    if(editingTask!={}){
+      setvariavel("editardespesa")
+    }else{
+      setvariavel("despesas")
+    }
+  },[editingTask])
   useEffect(() => {
     updateDataStorage("variavel",variavel);
   }, [variavel]);
@@ -192,7 +200,7 @@ function App() {
         </div>
       </nav>
       <div className="Conteudo">
-        <ExpansesList data={data} setData={setData}/>
+        <ExpansesList data={data} setData={setData} setEditingTask={setEditingTask}/>
         <main>
           {variavel === "dashboard" && <>
             <Dashboard data={data} setData={setData}/>
@@ -252,7 +260,9 @@ function App() {
               />
             </>
           )}
-          {variavel === "editardespesa" && <></>}
+          {variavel === "editardespesa" && <>
+            <EditExpanse data={data} setData={setData} setVariavel={setvariavel} valoresAntigos={editingTask}/>
+          </>}
         </main>
       </div>
     </>

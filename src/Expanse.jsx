@@ -1,5 +1,5 @@
 import { useState } from "react"
-export default function Expanse({ id, type,  nome, valor, descricao, categoria, date, setData, data}) {
+export default function Expanse({ id, type,  nome, valor, descricao, categoria, date, setData, data, setEditingTask}) {
     const [opened, setOpened] = useState(false)
 
     function deleteExpanse(){
@@ -58,7 +58,17 @@ export default function Expanse({ id, type,  nome, valor, descricao, categoria, 
                     <div className="CardBottom flex space-between">
                         <div className="CategoriaData">{categoria} | {date}</div>
                         <div className="LapisLixeira">
-                            <i class="bi bi-pencil-fill"></i>
+                            <i class="bi bi-pencil-fill" onClick={()=>{
+                                setEditingTask({
+                                    id: id,
+                                    nome: nome,
+                                    valor: valor,
+                                    tipo: type,
+                                    descricao: descricao,
+                                    categoria: categoria, 
+                                    data: date
+                                })
+                            }}></i>
                             <i class="bi bi-trash3-fill" onClick={deleteExpanse}></i>
                         </div>
                     </div>
