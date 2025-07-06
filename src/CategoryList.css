@@ -5,15 +5,15 @@
 }
 
 .CaixaCategoria{
-    border: .0625rem solid #d9d9d9;
+    border: 1px solid #d9d9d9;
     height: 100%;
-    max-width: 20.1875rem;
-    max-width: 20.1875rem;
-    padding: .625rem;
+    max-width: 423px;
+    max-width: 423px;
+    padding: 10px;
 }
 
 .h1Categoria{
-    border: .0625rem solid #d9d9d9;
+    border: 1px solid #d9d9d9;
     background-color: #d9d9d9;
 }
 
@@ -24,5 +24,5 @@
 }
 
 .UlCategoria{
-    padding-left: 2.1875rem;
+    padding-left: 35px;
 }
