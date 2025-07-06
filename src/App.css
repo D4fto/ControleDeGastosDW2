@@ -291,12 +291,10 @@ main {
     
     overflow: hidden;
     
-    min-height: calc(100% - 50px);
-    max-height: calc(100% - 50px);
+    min-height: calc(100%);
+    max-height: calc(100% );
     width: 100%;
-    .principal{
-        max-height: 30vh !important;
-      }
+    
     }
   }
   .iframeContainer{
@@ -306,6 +304,9 @@ main {
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows .3s;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow: hidden;
   }
   .iframeContainer.Aberto{
     
@@ -331,7 +332,6 @@ main {
   height: 100%;
   max-height: 100%;
   .bi {
-
     font-size: 1.5rem;
   }
 }
