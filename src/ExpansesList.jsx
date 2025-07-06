@@ -26,7 +26,7 @@ export default function ExpansesList({data, setData}){
             if(expPointer<expansesArray.length&&groupPointer<groupArray.length){
                 if(parseInt(expansesArray[expPointer].valor)>groupArray[groupPointer].valor){
                     let e = expansesArray[expPointer]
-                    elements.push(<Expanse key={expPointer} data={e.data} categoria={e.categoria} descricao={e.descricao} nome={e.nome} valor={e.valor} setData={setData}/>)
+                    elements.push(<Expanse key={expPointer} date={e.data} categoria={e.categoria} descricao={e.descricao} nome={e.nome} valor={e.valor} setData={setData} data={data} id={e.id} type={e.tipo}/>)
                     expPointer++
                     continue
                 }
@@ -37,7 +37,7 @@ export default function ExpansesList({data, setData}){
             }
             if(expPointer<expansesArray.length){
                 let e = expansesArray[expPointer]
-                elements.push(<Expanse key={expPointer} data={e.data} categoria={e.categoria} descricao={e.descricao} nome={e.nome} valor={e.valor} setData={setData}/>)
+                elements.push(<Expanse key={expPointer} date={e.data} categoria={e.categoria} descricao={e.descricao} nome={e.nome} valor={e.valor} setData={setData} data={data} id={e.id} type={e.tipo}/>)
                 expPointer++
                 continue
             }
@@ -60,13 +60,13 @@ export default function ExpansesList({data, setData}){
             <h1 className="Tipo">Fixas</h1>
             <ul className="Lista">
                 {
-                createExpansesList2(handleInRoot(data.expanses.inRoot, "fixo"), data.expanses.fixo, data.groups.fixo)
+                createExpansesList2(handleInRoot(data.expanses.inRoot, "fixo"), data.expanses.fixo, data.groups.fixo, "fixo")
                 }
             </ul>
             <h1 className="Tipo">Variáveis</h1>
             <ul className="Lista">
             {
-                createExpansesList2(handleInRoot(data.expanses.inRoot, "variavel"), data.expanses.variavel, data.groups.variavel)
+                createExpansesList2(handleInRoot(data.expanses.inRoot, "variavel"), data.expanses.variavel, data.groups.variavel, "variavel")
                 }
             </ul>
         </div>

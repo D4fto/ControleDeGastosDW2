@@ -24,5 +24,25 @@
 }
 
 .UlCategoria{
-    padding-left: 2.1875rem;
+    list-style: circle;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .3s;
+    >ul{
+        overflow: hidden;
+        padding-left: 2.1875rem;
+    }
+}
+.UlCategoria.Aberto{
+    grid-template-rows: 1fr;
+}
+.bi-caret-down-fill.Aberto{
+    transform: scaleY(-1);
+}
+.bi-caret-down-fill{
+    cursor: pointer;
+    transition: transform .3s;
+}
+.bi-trash3-fill{
+    cursor: pointer;
 }

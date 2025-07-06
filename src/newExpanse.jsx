@@ -36,6 +36,8 @@ export default function NewExpanse({ data, setData, setVariavel }) {
 
     let id = newData.expanses[type].maxId + 1;
     newData.expanses[type].maxId = id;
+    newExpanse.id = id
+    newExpanse.tipo = type
     newData.expanses[type][id] = { ...newExpanse };
     if (group === "/") {
       newData.expanses.inRoot.push(type + id);
@@ -172,11 +174,13 @@ export default function NewExpanse({ data, setData, setVariavel }) {
 }
 
 const newExpanse = {
+  id: 0,
   nome: "",
   valor: 0,
   data: "",
   descricao: "",
   categoria: "Sem categoria",
+  tipo: "",
 };
 function changeObject(atributo, valor) {
   newExpanse[atributo] = valor;

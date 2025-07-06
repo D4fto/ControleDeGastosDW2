@@ -1,6 +1,48 @@
 import { useState } from "react"
-export default function Expanse({ nome, valor, descricao, categoria, data, setData}) {
+export default function Expanse({ id, type,  nome, valor, descricao, categoria, date, setData, data}) {
     const [opened, setOpened] = useState(false)
+
+    function deleteExpanse(){
+        console.log(type)
+        const newData = {...data}
+        console.log(newData)
+        let address
+        if(newData.expanses.inRoot.includes(type+id)){
+            newData.expanses.inRoot = newData.expanses.inRoot.filter((x)=>x!=type+id)
+        }else{
+            address = findAddressAndRemove(newData.groups[type], "/")
+            updateValues(address.substring(1, address.length - 1).split("/"), newData.groups[type])
+        }
+        setData(newData)
+
+        
+    }
+    function updateValues(address, groupList){
+        for (const element of groupList) {
+            if(element.nome == address[0]){
+                element.valor-=valor
+                address.shift()
+                updateValues(address, element.children.groups)
+                return
+            }
+
+        }
+    }
+    
+    function findAddressAndRemove(groupList, address){
+        for (const element of groupList) {
+            if(element.children.expanses.includes(id)){
+                element.children.expanses = element.children.expanses.filter((x)=>x!=id)
+                return (address + element.nome + "/")
+            }
+            let x = findAddressAndRemove(element.children.groups, address + element.nome + "/")
+            if(x){
+                return x
+            }
+        }
+        return false
+    }
+    
     return (
         <li className="Despesa">
             <div className="NomePreco">
@@ -14,10 +56,10 @@ export default function Expanse({ nome, valor, descricao, categoria, data, setDa
                 <div className="OverflowHidden">
                     <div className="Descricao">{descricao}</div>
                     <div className="CardBottom flex space-between">
-                        <div className="CategoriaData">{categoria} | {data}</div>
+                        <div className="CategoriaData">{categoria} | {date}</div>
                         <div className="LapisLixeira">
                             <i class="bi bi-pencil-fill"></i>
-                            <i class="bi bi-trash3-fill"></i>
+                            <i class="bi bi-trash3-fill" onClick={deleteExpanse}></i>
                         </div>
                     </div>
                 </div>

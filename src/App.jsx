@@ -83,56 +83,70 @@ function initializeData() {
       fixo: {
         maxId: 4,
         1: {
+          id: 1,
           nome: "Aluguel",
           valor: "84767",
           data: "2025-06-11",
           descricao: "Valor aluguel",
           categoria: "Essenciais",
+          tipo: "fixo"
         },
         2: {
+          id: 2,
           nome: "Palio",
           valor: "5986",
           data: "2025-06-11",
           descricao: "Seguro do palio",
           categoria: "Essenciais",
+          tipo: "fixo"
         },
         3: {
+          id: 3,
           nome: "Yamaha MT-09",
           valor: "41287",
           data: "2025-06-11",
           descricao: "Seguro da Yamaha MT-09",
           categoria: "Essenciais",
+          tipo: "fixo"
         },
         4: {
+          id: 4,
           nome: "Celular",
           valor: "1200",
           data: "2025-06-11",
           descricao: "Seguro do celular kkkkkk",
           categoria: "Lazer",
+          tipo: "fixo"
         },
       },
       variavel: {
         maxId: 3,
         1: {
+          id: 1,
           nome: "Mercado",
           valor: "51232",
           data: "2025-06-11",
           descricao: "Compra no mercado",
           categoria: "Essenciais",
+          tipo: "variavel"
         },
         2: {
+          id: 2,
           nome: "Cantina",
           valor: "10000",
           data: "2025-06-11",
           descricao: "Compra na cantina",
           categoria: "Lazer",
+          tipo: "variavel"
         },
         3: {
+          id: 3,
           nome: "Transporte",
           valor: "18514",
           data: "2025-06-11",
           descricao: "Gasto em transporte",
           categoria: "Essenciais",
+          tipo: "variavel"
         },
       },
     },

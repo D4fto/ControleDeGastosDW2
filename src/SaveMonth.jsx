@@ -38,6 +38,6 @@ export default function SaveMonth({data, setData}){
         setData(newData)
     }
     return(<>
-        <button onClick={save}>SALVAR MÊS</button>
+        <button onClick={save} className="Invertido">SALVAR MÊS</button>
     </>)
 }
