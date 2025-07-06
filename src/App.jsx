@@ -219,7 +219,7 @@ function App() {
                         </button>
                       </div>
                       <div className="NetoDoNovo">
-                        <PopUpButton
+                        <PopUpButton 
                           title={"Categoria"}
                           icon={<i className="bi bi-bookmark"></i>}
                           PopUp={NewCategory}
