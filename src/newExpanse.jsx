@@ -109,8 +109,10 @@ export default function NewExpanse({ data, setData, setVariavel }) {
             />
             
           </div>
-          <div className="DataCategoria flex">
-            <label htmlFor="data">Data: </label>
+         <div className="Alinhamento">
+           <div className="DataCategoria flex">
+            <div className="flex">
+              <label htmlFor="data">Data: </label>
             <input
               onChange={(e) => {
                 changeObject("data", e.target.value);
@@ -119,6 +121,7 @@ export default function NewExpanse({ data, setData, setVariavel }) {
               type="date"
               required
             />{" "}
+            </div>
             
             <div className="DCategoria flex">
               <label htmlFor="categoria">Categoria: </label>
@@ -139,6 +142,7 @@ export default function NewExpanse({ data, setData, setVariavel }) {
               </select>
             </div>
           </div>
+         </div>
           <div className="TipoSubmit">
             <label>
               <input
