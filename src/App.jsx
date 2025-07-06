@@ -164,6 +164,7 @@ function App() {
   const [variavel, setvariavel] = useState(()=>JSON.parse(localStorage.getItem("variavel")));
   const [valorBit, setvalorBit] = useState(0);
   const [celularOpen, setCelularOpen] = useState(false);
+  // const [editingTask, setEditingTask] = useEffect()
   const [data, setData] = useState(() =>
     JSON.parse(localStorage.getItem("data"))
   );
