@@ -163,6 +163,7 @@ function updateDataStorage(name,data) {
 function App() {
   const [variavel, setvariavel] = useState(()=>JSON.parse(localStorage.getItem("variavel")));
   const [valorBit, setvalorBit] = useState(0);
+  const [celularOpen, setCelularOpen] = useState(false);
   const [data, setData] = useState(() =>
     JSON.parse(localStorage.getItem("data"))
   );
@@ -228,14 +229,14 @@ function App() {
                   </div>
                   <CategoryList data={data} setData={setData}/>
                 </div>
-                <div>
-                  <p className="PrecoBitCoin">Preço do BitCoin brasileiro: R$ {valorBit}</p>
+                <div className="FilhoDoVoDoNovo">
+                  <p className="PrecoBitCoin"><i class="bi bi-currency-bitcoin"></i> Preço do BitCoin brasileiro: R$ {valorBit}</p>
                   <div className="Celular">
                     <div className="TopBar flex">
                       <h1>🔴🟡🟢</h1>
-                      <h1><i className="bi bi-x"></i></h1>
+                      <i class={"bi bi-caret-down-fill black arrowOpen" + (celularOpen ? " flip-v" : "")} onClick={() => setCelularOpen(!celularOpen)}></i>
                     </div>
-                    <iframe src="https://marceloast.github.io/Trabalho-final-de-DW-Pedro-Eduardo-e-Marcelo-/" frameborder="0"></iframe>
+                    <div className={"iframeContainer" +  (celularOpen ? " Aberto" : "")}><iframe src="https://d4fto.github.io/todolist2/" frameborder="0"></iframe></div>
                   </div>
                 </div>
               </div>
