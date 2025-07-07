@@ -14,11 +14,11 @@ import EditExpanse from "./EditExpanse";
 
 
 function limpaLocal() {
-  localStorage.setItem("data", "");
+  localStorage.setItem("data2", "");
   localStorage.setItem("variavel", "")
 }
 // limpaLocal();
-if (!localStorage.getItem("data")) {
+if (!localStorage.getItem("data2")) {
   initializeData();
 }
 if (!localStorage.getItem("variavel")) {
@@ -171,7 +171,7 @@ function initializeData() {
     categories: ["Sem categoria", "Essenciais", "Lazer"],
     storage:Storage()
   };
-  localStorage.setItem("data", JSON.stringify(data));
+  localStorage.setItem("data2", JSON.stringify(data));
 }
 
 function updateDataStorage(name,data) {
@@ -184,10 +184,10 @@ function App() {
   const [celularOpen, setCelularOpen] = useState(false);
   const [editingTask, setEditingTask] = useState({})
   const [data, setData] = useState(() =>
-    JSON.parse(localStorage.getItem("data"))
+    JSON.parse(localStorage.getItem("data2"))
   );
   useEffect(() => {
-    updateDataStorage("data",data);
+    updateDataStorage("data2",data);
   }, [data]);
   useEffect(()=>{
     if(editingTask.tipo){
