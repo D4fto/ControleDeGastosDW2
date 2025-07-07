@@ -8,7 +8,7 @@
 
 .h1NovoGrupo {
   font-weight: 400;
-  font-size: 20px;
+  font-size: 1.25rem;
   margin: 0;
   color: #000000;
 }
@@ -16,41 +16,41 @@
 .novoGrupo{
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: .9375rem;
 }
 
 .CaixaNovoGrupo {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
 }
 
 
 .BoxNovoGrupo,
 .BoxNovoGrupo2 {
-  width: 350px;
-  padding: 15px 25px;
-  font-size: 14px;
+  width: 21.875rem;
+  padding: .9375rem 1.5625rem;
+  font-size: .875rem;
   color: #000000;
   background-color: transparent;
-  border: 1px solid #d9d9d9;
-  border-radius: 5px;
-  margin-bottom: 5px;
+  border: .0625rem solid #d9d9d9;
+  border-radius: .3125rem;
+  margin-bottom: .3125rem;
 }
 
 .BoxNovoGrupo2 {
   resize: none;
-  height: 120px;
+  height: 7.5rem;
 }
 
 
 .x {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: .9375rem;
+  right: .9375rem;
   background: none;
   border: none;
-  font-size: 25px;
+  font-size: 1.5625rem;
   color: #d9d9d9;
   cursor: pointer;
 }
@@ -58,16 +58,16 @@
 
 .radio-options {
   display: flex;
-  gap: 20px;
+  gap: 1.25rem;
   align-items: center;
-  margin-top: 5px;
+  margin-top: .3125rem;
 }
 
 .radio-options label {
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: 14px;
+  gap: .3125rem;
+  font-size: .875rem;
   color: #000;
 }
 
@@ -75,35 +75,37 @@
 .Barra {
   width: 100%;
   display: flex;
-  gap: 10px;
+  gap: .625rem;
   background: transparent;
-  margin-top: 5px;
+  margin-top: .3125rem;
 }
 
 .Barra > button{
     width: 100%;
-  height: 47px;
-  padding: 0 15px;
-  font-size: 20px;
+  height: 2.9375rem;
+  padding: 0 .9375rem;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #ffffff;
   background-color: #d9d9d9;
-  border: 1px solid #d9d9d9;
-  border-radius: 5px;
+  border: .0625rem solid #d9d9d9;
+  border-radius: .3125rem;
   cursor: pointer;
   text-align: left;
+  max-width: calc(21.875rem - 3.375rem);
+  overflow: hidden;
 }
 
 .Barra > button:first-child {
   width: 100%;
-  height: 47px;
-  padding: 0 15px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #d9d9d9;
+  height: 2.9375rem;
+  padding: 0 .9375rem;
+  font-size: 1rem;
+  font-weight: normal;
+  color: #000;
   background-color: transparent;
-  border: 1px solid #d9d9d9;
-  border-radius: 5px;
+  border: .0625rem solid #d9d9d9;
+  border-radius: .3125rem;
   cursor: pointer;
   text-align: left;
 }
@@ -122,16 +124,16 @@
 
 
 .Button {
-  width: 54px;
-  height: 47px;
+  width: 3.375rem;
+  height: 2.9375rem;
 }
 
 
 .novoGrupo label {
   color: #d9d9d9;
-  font-size: 14px;
-  margin-right: 15px;
+  font-size: .875rem;
+  margin-right: .9375rem;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: .3125rem;
 }

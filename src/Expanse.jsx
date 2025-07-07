@@ -3,9 +3,9 @@ export default function Expanse({ id, type,  nome, valor, descricao, categoria, 
     const [opened, setOpened] = useState(false)
 
     function deleteExpanse(){
-        console.log(type)
+      
         const newData = {...data}
-        console.log(newData)
+  
         let address
         if(newData.expanses.inRoot.includes(type+id)){
             newData.expanses.inRoot = newData.expanses.inRoot.filter((x)=>x!=type+id)
@@ -13,6 +13,7 @@ export default function Expanse({ id, type,  nome, valor, descricao, categoria, 
             address = findAddressAndRemove(newData.groups[type], "/")
             updateValues(address.substring(1, address.length - 1).split("/"), newData.groups[type])
         }
+        newData.expanses[type][id].active=false
         setData(newData)
 
         
@@ -48,8 +49,8 @@ export default function Expanse({ id, type,  nome, valor, descricao, categoria, 
             <div className="NomePreco">
                 <p>{nome}</p>
                 <div className="flex">
-                    <p>R$ {String(valor).padStart(3, "0").substring(0, String(valor).padStart(3, "0").length - 2)},{String(valor).padStart(3, "0").substring(String(valor).padStart(3, "0").length - 2)}</p>
-                    <i class={"bi bi-caret-down-fill arrowOpen" + (opened ? " flip-v" : "")} onClick={() => setOpened(!opened)}></i>
+                    <p>{(parseInt(valor)/100).toLocaleString("pt-BR", {style: "currency",currency: "BRL",minimumFractionDigits: 2})}</p>
+                    <i className={"bi bi-caret-down-fill arrowOpen" + (opened ? " flip-v" : "")} onClick={() => setOpened(!opened)}></i>
                 </div>
             </div>
             <div className={"AbreFecha" + (!opened ? " Fechado" : "")}>
@@ -58,7 +59,7 @@ export default function Expanse({ id, type,  nome, valor, descricao, categoria, 
                     <div className="CardBottom flex space-between">
                         <div className="CategoriaData">{categoria} | {date}</div>
                         <div className="LapisLixeira">
-                            <i class="bi bi-pencil-fill" onClick={()=>{
+                            <i className="bi bi-pencil-fill" onClick={()=>{
                                 setEditingTask({
                                     id: id,
                                     nome: nome,
@@ -66,10 +67,11 @@ export default function Expanse({ id, type,  nome, valor, descricao, categoria, 
                                     tipo: type,
                                     descricao: descricao,
                                     categoria: categoria, 
-                                    data: date
+                                    data: date,
+                                    address: "/"
                                 })
                             }}></i>
-                            <i class="bi bi-trash3-fill" onClick={deleteExpanse}></i>
+                            <i className="bi bi-trash3-fill" onClick={deleteExpanse}></i>
                         </div>
                     </div>
                 </div>

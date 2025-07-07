@@ -39,15 +39,21 @@ export default function CategoryList({data, setData}){
     for (const key in data.expanses.fixo) {
         if (key!="maxId") {
             const element = data.expanses.fixo[key];
-            pin[element.categoria].push({"nome":element.nome,"valor":element.valor})
-            values[element.categoria]+=parseInt(element.valor)
+            if(element.active){
+
+                pin[element.categoria].push({"nome":element.nome,"valor":element.valor})
+                values[element.categoria]+=parseInt(element.valor)
+            }
         }
     }
     for (const key in data.expanses.variavel) {
         if (key!="maxId") {
             const element = data.expanses.variavel[key];
-            pin[element.categoria].push({"nome":element.nome,"valor":element.valor})
-            values[element.categoria]+=parseInt(element.valor)
+            if(element.active){
+                pin[element.categoria].push({"nome":element.nome,"valor":element.valor})
+                values[element.categoria]+=parseInt(element.valor)
+
+            }
             
         }
     }
@@ -58,19 +64,19 @@ export default function CategoryList({data, setData}){
         <div className="ListaCategoria">
             <h1 className="h1Categoria">Categorias</h1>
             <div className="CaixaCategoria">
-                {data.categories.map((e)=>{
+                {data.categories.map((e, i)=>{
                     const isOpen = abertos[e] || false;
                     return(
-                        <div>
+                        <div key={i}>
                             <div className="flex Categoria">
-                                <h4>{e} - R$ {String(values[e]).padStart(3, "0").substring(0, String(values[e]).padStart(3, "0").length - 2)},{String(values[e]).padStart(3, "0").substring(String(values[e]).padStart(3, "0").length - 2)}{e!="Sem categoria"?<i onClick={(no)=>excluiCategoria(e)} className="bi bi-trash3-fill"></i>:<></>}</h4>
+                                <h4>{e} - {(values[e]/100).toLocaleString("pt-BR", {style: "currency",currency: "BRL",minimumFractionDigits: 2})}{e!="Sem categoria"?<i onClick={(no)=>excluiCategoria(e)} className="bi bi-trash3-fill"></i>:<></>}</h4>
                                 <i className={"bi bi-caret-down-fill"+(isOpen?" Aberto":"")} onClick={() => toggleCategoria(e)}></i>
                             </div>
                             <div className={"UlCategoria"+(isOpen?" Aberto":"")}>
                                 <ul>
-                                {pin[e].map((t)=>(
-                                <li>
-                                    <p>{t.nome} - R$ {String(t.valor).padStart(3, "0").substring(0, String(t.valor).padStart(3, "0").length - 2)},{String(t.valor).padStart(3, "0").substring(String(t.valor).padStart(3, "0").length - 2)}</p>
+                                {pin[e].map((t, k)=>(
+                                <li key={k}>
+                                    <p>{t.nome} - {(parseInt(t.valor)/100).toLocaleString("pt-BR", {style: "currency",currency: "BRL",minimumFractionDigits: 2})}</p>
                                 </li>
                                 ))}
                             </ul>

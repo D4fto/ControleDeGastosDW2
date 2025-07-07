@@ -1,25 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 
 .PopUp.NovaCategoria {
-  width: 320px;
-  padding: 20px;
+  width: 20rem;
+  padding: 1.25rem;
   background-color: white;
-  border-radius: 5px;
+  border-radius: .3125rem;
 }
 
 .PopUp.NovaCategoria h1 {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 
 .PopUp.NovaCategoria .x {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: .75rem;
+  right: .75rem;
   background: none;
   border: none;
-  font-size: 22px;
+  font-size: 1.375rem;
   color: #ccc;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -31,25 +31,25 @@
 
 .Epaco {
   display: flex;
-  gap: 10px;
+  gap: .625rem;
 }
 
 .InputNovacategoria {
   flex: 1;
-  padding: 10px 12px;
-  border: 1px solid #d9d9d9;
-  border-radius: 5px;
-  font-size: 14px;
-  color: #d9d9d9;
+  padding: .625rem .75rem;
+  border: .0625rem solid #d9d9d9;
+  border-radius: .3125rem;
+  font-size: .875rem;
+  width: 100%;
 }
 
 .ButtonNovacategoria {
-  width: 42px;
-  height: 42px;
+  width: 2.625rem;
+  height: 2.625rem;
   background-color: #d9d9d9;
   border: none;
-  border-radius: 5px;
-  font-size: 20px;
+  border-radius: .3125rem;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #fff;
   cursor: pointer;
@@ -58,4 +58,8 @@
 
 .ButtonNovacategoria:hover {
   background-color: #d9d9d9;
+}
+
+.NovaCategoriaForm{
+  width: 100%;
 }

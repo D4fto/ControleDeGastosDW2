@@ -73,14 +73,14 @@ export default function EditGroup({ data, setData, setControl, nomeOriginal, des
                 groupsa.valor-=x.valor
                 children = {...x.children}
                 valorOriginal = x.valor
-                console.log(x.valor)
+
                 updateAddresses(x, group + nome + '/')
                 return false
             }
             return true
             
         })
-        console.log(group)
+
         return
     }
     findGroup(adr, group.children.groups)
@@ -89,7 +89,7 @@ export default function EditGroup({ data, setData, setControl, nomeOriginal, des
         let group
         for (let i = 0; i < groupList.length; i++) {
             const element = groupList[i];
-            console.log(adr, element.nome, i, groupList)
+
             if(element.nome==adr[0]){
                 group=element
                 break
@@ -196,6 +196,7 @@ export default function EditGroup({ data, setData, setControl, nomeOriginal, des
                 type: type,
                 group: group,
                 setGroup: setGroup,
+                limit: address
               }}
             />
             <button

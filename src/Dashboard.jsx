@@ -10,9 +10,6 @@ function addOneTMonth(str){
     return `${parseInt(month)+1}/01/${year}`
 
 }
-function handleValor(valor){
-    return String(valor).padStart(3, "0").substring(0, String(valor).padStart(3, "0").length - 2)+","+String(valor).padStart(3, "0").substring(String(valor).padStart(3, "0").length - 2)
-}
 function subOneToMonth(str){
     const [month, , year] = str.split('/');
     if(month=="0"){
@@ -24,6 +21,9 @@ function subOneToMonth(str){
 
 }
 export default function Dashboard({data, setData}){
+    if(typeof google === "undefined"){
+        return(<></>)
+    }
     let actualDate = new Date()
     const [categoriesDate, setCategoryDate] = useState(`${actualDate.getMonth()}/01/${actualDate.getFullYear()}`)
     const [expansesDate, setExpansesDate] = useState(`${actualDate.getMonth()}/01/${actualDate.getFullYear()}`)
@@ -103,9 +103,11 @@ export default function Dashboard({data, setData}){
     }, [yearDate, data]);
     function drawChart() {
         let array = Object.entries(data.storage[categoriesDate].categoryMap)
-        
+        array.map((x)=>{
+            x[1]=x[1]/100
+        })
         array.unshift(["Categoria", "valor"])
-        console.log(array)
+
 
         let charData = google.visualization.arrayToDataTable(array);
 
@@ -132,11 +134,13 @@ export default function Dashboard({data, setData}){
         if(array.length>5){
             array.length=5
         }
+        array.map((x)=>{
+            x[1]=x[1]/100
+        })
         for (let i = 0; i < array.length; i++) {
             array[i].push(i%2?"#d9d9d9":"#9c9c9c")
         }
-        array.unshift(["Categoria", "valor", {role: "style"}])
-        console.log(array)
+        array.unshift(["Despesa", "valor", {role: "style"}])
 
         let charData = google.visualization.arrayToDataTable(array);
 
@@ -153,7 +157,6 @@ export default function Dashboard({data, setData}){
 
         let chart = new google.visualization.ColumnChart(barchartRef.current);
 
-        google.visualization.events.addListener(chart, 'error', (id, message)=>{console.log(id, message)});
         chart.draw(charData, options);
 
     }
@@ -171,7 +174,9 @@ export default function Dashboard({data, setData}){
             
         })
         
-        
+        array.map((x)=>{
+            x[1] = x[1]/100
+        })
         array.unshift(["Categoria", "valor"])
 
         let charData = google.visualization.arrayToDataTable(array);
@@ -229,9 +234,9 @@ export default function Dashboard({data, setData}){
                         <p>Total Gasto Esse Mês</p>
                         {data.storage[totalDate]?<p>
                         
-                        <>R$ {handleValor(data.storage[totalDate].total)} </>
+                        <>{(data.storage[totalDate].total/100).toLocaleString("pt-BR", {style: "currency",currency: "BRL",minimumFractionDigits: 2})} </>
                         {data.storage[subOneToMonth(totalDate)].expanses.length>0 && data.storage[subOneToMonth(totalDate)]?
-                            <span className={data.storage[totalDate].total>data.storage[subOneToMonth(totalDate)].total?"RelacaoMesAnterior Aumentou":"RelacaoMesAnterior Abaixou"}><i className="bi bi-caret-down-fill"></i> {((data.storage[totalDate].total/data.storage[subOneToMonth(totalDate)].total-1)*100).toFixed(2)}%</span>:<></>
+                            <span className={data.storage[totalDate].total>data.storage[subOneToMonth(totalDate)].total?"RelacaoMesAnterior Aumentou":"RelacaoMesAnterior Abaixou"}><i className={"bi "+(data.storage[totalDate].total>data.storage[subOneToMonth(totalDate)].total?"bi-caret-up-fill":"bi-caret-down-fill")}></i> {((data.storage[totalDate].total/data.storage[subOneToMonth(totalDate)].total-1)*100).toFixed(2)}%</span>:<></>
                         }</p>:"No data"
                     
                     }

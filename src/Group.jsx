@@ -16,6 +16,10 @@ export default function Group({nome, descricao, valor, list, data, setData, type
             for (let i = 0; i < newData.groups[type].length; i++) {
                 const element = newData.groups[type][i];
                 if(element.nome == nome){
+                    for (const id of element.children.expanses) {
+                        newData.expanses[type][id].active=false
+                    }
+                    inactiveAllExpanses(element.children.groups)
                     x=i
                     break
                 }
@@ -24,28 +28,39 @@ export default function Group({nome, descricao, valor, list, data, setData, type
         }
 
         setData(newData)
-    }
-    
-    function searchAndDelete(adr, group, i){
-        if(adr.length==0){
-            group.children.groups = group.children.groups.filter((x)=>{
-                if(x.nome==nome){
-                    group.valor-=x.valor
-                    return false
+        function inactiveAllExpanses(groupList){
+            for (const element of groupList) {
+                for (const id of element.children.expanses) {
+                    newData.expanses[type][id].active=false
                 }
-                return true
-                
-            })
-            console.log(group)
-            return
+                inactiveAllExpanses(element.children.groups)
+            }
         }
-        findGroup(adr, group.children.groups)
+        
+        function searchAndDelete(adr, group, i){
+            if(adr.length==0){
+                group.children.groups = group.children.groups.filter((x)=>{
+                    if(x.nome==nome){
+                        group.valor-=x.valor
+                        for (const id of x.children.expanses) {
+                            newData.expanses[type][id].active=false
+                        }
+                        inactiveAllExpanses(x.children.groups)
+                        return false
+                    }
+                    return true
+                    
+                })
+                
+                return
+            }
+            findGroup(adr, group.children.groups)
     }
     function findGroup(adr, groupList){
         let group
         for (let i = 0; i < groupList.length; i++) {
             const element = groupList[i];
-            console.log(adr, element.nome, i, groupList)
+            
             if(element.nome==adr[0]){
                 group=element
                 break
@@ -54,14 +69,15 @@ export default function Group({nome, descricao, valor, list, data, setData, type
         adr.shift()
         return searchAndDelete(adr, group, groupList)
     }
+    }
 
     return(<li className="Grupo">
         <div className="NomePreco NomePrecoGrupo">
             <p>
                 <i className="bi bi-folder2"></i> {nome}</p> 
                 <div className="flex">
-                    <p>R$ {String(valor).padStart(3,"0").substring(0,String(valor).padStart(3,"0").length-2)},{String(valor).padStart(3,"0").substring(String(valor).padStart(3,"0").length-2)}</p>
-                    <i class={"bi bi-caret-down-fill arrowOpen"+ (opened?" flip-v":"")} onClick={() => setOpened(!opened)}></i>
+                <p>{(valor/100).toLocaleString("pt-BR", {style: "currency",currency: "BRL",minimumFractionDigits: 2})}</p>
+                    <i className={"bi bi-caret-down-fill arrowOpen"+ (opened?" flip-v":"")} onClick={() => setOpened(!opened)}></i>
                 </div>
         </div>
         
@@ -72,8 +88,8 @@ export default function Group({nome, descricao, valor, list, data, setData, type
                     <div className="CardBottom flex space-between">
                         <div className="DescricaoGrupo">{descricao}</div>
                         <div className="LapisLixeira">
-                            <PopUpButton title={<i class="bi bi-pencil-fill"></i>} PopUp={EditGroup} portal={true} props={{ data: data, setData: setData, nomeOriginal: nome, descricaoOriginal: descricao, address: address, typeOriginal: type }}></PopUpButton>
-                            <i class="bi bi-trash3-fill" onClick={()=>deleteGroup()}></i>
+                            <PopUpButton title={<i className="bi bi-pencil-fill"></i>} PopUp={EditGroup} portal={true} props={{ data: data, setData: setData, nomeOriginal: nome, descricaoOriginal: descricao, address: address, typeOriginal: type }}></PopUpButton>
+                            <i className="bi bi-trash3-fill" onClick={()=>deleteGroup()}></i>
                         </div>
                     </div>
                 </div>

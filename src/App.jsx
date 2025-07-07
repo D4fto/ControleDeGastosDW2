@@ -17,7 +17,7 @@ function limpaLocal() {
   localStorage.setItem("data", "");
   localStorage.setItem("variavel", "")
 }
-limpaLocal();
+// limpaLocal();
 if (!localStorage.getItem("data")) {
   initializeData();
 }
@@ -72,7 +72,7 @@ function initializeData() {
           valor: 51232 + 10000,
           children: {
             groups: [],
-            expanses: [1, 2],
+            expanses: [1, 2, 4],
           },
           address: "/",
           type: "variavel",
@@ -90,6 +90,7 @@ function initializeData() {
           data: "2025-06-11",
           descricao: "Valor aluguel",
           categoria: "Essenciais",
+          active: true,
           tipo: "fixo"
         },
         2: {
@@ -99,6 +100,7 @@ function initializeData() {
           data: "2025-06-11",
           descricao: "Seguro do palio",
           categoria: "Essenciais",
+          active: true,
           tipo: "fixo"
         },
         3: {
@@ -108,6 +110,7 @@ function initializeData() {
           data: "2025-06-11",
           descricao: "Seguro da Yamaha MT-09",
           categoria: "Essenciais",
+          active: true,
           tipo: "fixo"
         },
         4: {
@@ -116,7 +119,8 @@ function initializeData() {
           valor: "1200",
           data: "2025-06-11",
           descricao: "Seguro do celular kkkkkk",
-          categoria: "Lazer",
+          categoria: "Sem categoria",
+          active: true,
           tipo: "fixo"
         },
       },
@@ -129,6 +133,7 @@ function initializeData() {
           data: "2025-06-11",
           descricao: "Compra no mercado",
           categoria: "Essenciais",
+          active: true,
           tipo: "variavel"
         },
         2: {
@@ -138,6 +143,7 @@ function initializeData() {
           data: "2025-06-11",
           descricao: "Compra na cantina",
           categoria: "Lazer",
+          active: true,
           tipo: "variavel"
         },
         3: {
@@ -147,6 +153,17 @@ function initializeData() {
           data: "2025-06-11",
           descricao: "Gasto em transporte",
           categoria: "Essenciais",
+          active: true,
+          tipo: "variavel"
+        },
+        4: {
+          id: 4,
+          nome: "Fast-food",
+          valor: "54456",
+          data: "2025-06-11",
+          descricao: "Fast Food 🥺",
+          categoria: "Lazer",
+          active: true,
           tipo: "variavel"
         },
       },
@@ -173,21 +190,21 @@ function App() {
     updateDataStorage("data",data);
   }, [data]);
   useEffect(()=>{
-    if(editingTask!={}){
+    if(editingTask.tipo){
       setvariavel("editardespesa")
-    }else{
+    }else if(variavel=="editardespesa"){
       setvariavel("despesas")
     }
   },[editingTask])
   useEffect(() => {
     updateDataStorage("variavel",variavel);
   }, [variavel]);
-  // if (!searchBTC) {
-  //   bitcoin(setvalorBit);
-  //   searchBTC = setInterval(() => {
-  //     bitcoin(setvalorBit);
-  //   }, 60000);
-  // }
+  if (!searchBTC) {
+    bitcoin(setvalorBit);
+    searchBTC = setInterval(() => {
+      bitcoin(setvalorBit);
+    }, 60000);
+  }
   return (
     <>
       <nav className="MenuHorizontal">
@@ -222,7 +239,7 @@ function App() {
                       </div>
                       <div className="NetoDoNovo">
                         <button onClick={() => setvariavel("novadespesa")}>
-                          <i class="bi bi-currency-dollar"></i>
+                          <i className="bi bi-currency-dollar"></i>
                           Despesa
                         </button>
                       </div>
@@ -239,13 +256,13 @@ function App() {
                   <CategoryList data={data} setData={setData}/>
                 </div>
                 <div className="FilhoDoVoDoNovo">
-                  <p className="PrecoBitCoin"><i class="bi bi-currency-bitcoin"></i> Preço do BitCoin brasileiro: R$ {valorBit}</p>
+                  <p className="PrecoBitCoin"><i className="bi bi-currency-bitcoin"></i> Preço do BitCoin brasileiro: R$ {valorBit}</p>
                   <div className="Celular">
                     <div className="TopBar flex">
                       <h1>🔴🟡🟢</h1>
-                      <i class={"bi bi-caret-down-fill black arrowOpen" + (celularOpen ? " flip-v" : "")} onClick={() => setCelularOpen(!celularOpen)}></i>
+                      <i className={"bi bi-caret-down-fill black arrowOpen" + (celularOpen ? " flip-v" : "")} onClick={() => setCelularOpen(!celularOpen)}></i>
                     </div>
-                    <div className={"iframeContainer" +  (celularOpen ? " Aberto" : "")}><iframe src="https://d4fto.github.io/todolist2/" frameborder="0"></iframe></div>
+                    <div className={"iframeContainer" +  (celularOpen ? " Aberto" : "")}><iframe src="https://d4fto.github.io/todolist2/" frameBorder="0"></iframe></div>
                   </div>
                 </div>
               </div>

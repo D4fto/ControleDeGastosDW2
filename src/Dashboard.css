@@ -19,6 +19,13 @@
         border-top-right-radius: 5px;
         border-top-left-radius: 5px;
     }
+    >p{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 .DashboardButtons{
     gap: 10px;
@@ -73,10 +80,7 @@
 }
 .RelacaoMesAnterior.Aumentou{
     color: red;
-    i{
-        transform: scaleY(-1);
-    }
 }
 .RelacaoMesAnterior.Abaixou{
-    color: #00ff00;
+    color: #00c91b;
 }

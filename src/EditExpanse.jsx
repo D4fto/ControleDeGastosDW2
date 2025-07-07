@@ -23,19 +23,54 @@ function addIdToGroup(address, group, id, value) {
   findGroupToAdd(address, group.children.groups, id, value);
 }
 export default function EditExpanse({ data, setData, setVariavel , valoresAntigos}) {
-  const [group, setGroup] = useState(valoresAntigos.address);
+  if(!valoresAntigos.tipo){
+    return(<></>)
+  }
+  const [group, setGroup] = useState("/");
+  useEffect(()=>{
+    if(!data.expanses.inRoot.includes(valoresAntigos.tipo+valoresAntigos.id)){
+
+      let address = findAddress(data.groups[valoresAntigos.tipo], "/", valoresAntigos.id)
+      setGroup(address)
+    }
+
+  },[])
+
   const [type, setType] = useState(valoresAntigos.tipo);
   const [nome, setNome] = useState(valoresAntigos.nome);
   const [descricao, setDescricao] = useState(valoresAntigos.descricao);
   const [date, setDate] = useState(valoresAntigos.data);
-  const [valor, setValor] = useState(valoresAntigos.valor);
+  const [valorCentavos, setValorCentavos] = useState(0);
+  const [valorFormatado, setValorFormatado] = useState("R$ 0,00");
   const [categoria, setCategoria] = useState(valoresAntigos.categoria);
+  
+  useEffect(()=>{
 
+    if(!data.expanses.inRoot.includes(valoresAntigos.tipo+valoresAntigos.id)){
+
+      let address = findAddress(data.groups[valoresAntigos.tipo], "/", valoresAntigos.id)
+      setGroup(address)
+    }
+    setType(valoresAntigos.tipo);
+    setNome(valoresAntigos.nome);
+    setDescricao(valoresAntigos.descricao);
+    setDate(valoresAntigos.data);
+    const valorInicial = parseInt(valoresAntigos.valor || 0);
+    setValorCentavos(valorInicial);
+    setValorFormatado((valorInicial / 100).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    }));
+    setCategoria(valoresAntigos.categoria);
+    
+    
+  },[valoresAntigos])
+  
   
     function updateValues(address, groupList){
         for (const element of groupList) {
             if(element.nome == address[0]){
-                element.valor-=parseInt(newExpanse.valor)
+                element.valor-=valoresAntigos.valor
                 address.shift()
                 updateValues(address, element.children.groups)
                 return
@@ -44,10 +79,22 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
         }
     }
 
+    function findAddress(groupList, address, id){
+        for (const element of groupList) {
+            if(element.children.expanses.includes(id)){
+                return (address + element.nome + "/")
+            }
+            let x = findAddress(element.children.groups, address + element.nome + "/", id)
+            if(x){
+                return x
+            }
+        }
+        return false
+    }
     function findAddressAndRemove(groupList, address){
         for (const element of groupList) {
-            if(element.children.expanses.includes(newExpanse.id)){
-                element.children.expanses = element.children.expanses.filter((x)=>x!=newExpanse.id)
+            if(element.children.expanses.includes(valoresAntigos.id)){
+                element.children.expanses = element.children.expanses.filter((x)=>x!=valoresAntigos.id)
                 return (address + element.nome + "/")
             }
             let x = findAddressAndRemove(element.children.groups, address + element.nome + "/")
@@ -58,22 +105,28 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
         return false
     }
 
-  useEffect(() => {
-    setGroup("/");
-  }, [type]);
-
+  
   function send(event) {
     event.preventDefault();
     const newData = { ...data };
-    const newExpanse = {}
+    
+    let id = valoresAntigos.id;
+    const newExpanse = {
+      id: id,
+      nome: nome,
+      valor: valorCentavos,
+      data: date,
+      descricao: descricao,
+      categoria: categoria,
+      tipo: type,
+      active: true
+    };
 
-    let id = newData.expanses[type].maxId + 1;
-    newData.expanses[type].maxId = id;
-    newExpanse.id = id
-    newExpanse.tipo = type
+
+
     newData.expanses[type][id] = { ...newExpanse };
 
-    console.log(type)
+
     let address
     if(newData.expanses.inRoot.includes(type+id)){
         newData.expanses.inRoot = newData.expanses.inRoot.filter((x)=>x!=type+id)
@@ -94,12 +147,13 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
         parseInt(newExpanse.valor)
       );
     }
+
     setData(newData);
     setVariavel("despesas");
   }
   return (
     <div className="NovaDespesa">
-      <h1>Nova Despesa</h1>
+      <h1>Editar Despesa</h1>
       <div className="Caixa">
         <form className="Form" onSubmit={send} action="">
           <label htmlFor="nome">Nome: </label>
@@ -117,16 +171,25 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
           
           <label htmlFor="valor">valor: </label>
           
-          <input className="DValor"
-            onChange={(e) => {
-              setValor(e.target.value);
-            }}
-            value={valor}
+          <input
+            className="DValor"
             id="valor"
-            type="number"
-            placeholder="R$ 00.00"
+            type="text"
+            inputMode="numeric"
+            placeholder="R$ 0,00"
+            value={valorFormatado}
+            onChange={(e) => {
+              const raw = e.target.value.replace(/\D/g, ""); // só números
+              const centavos = parseInt(raw || "0", 10);
+              const formatado = (centavos / 100).toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              });
+              setValorCentavos(centavos);
+              setValorFormatado(formatado);
+            }}
             required
-          />{" "}
+          />
           
           <label htmlFor="descricao">Descrição: </label>
           
@@ -140,8 +203,8 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
             placeholder="Descrição legal"
           ></textarea>{" "}
           
-          <div style={{ position: "relative", width: "fit-content" }}>
-            <label htmlFor="local">Local: </label>
+          <div className="ParenteBarra" style={{ position: "relative"}}>
+            <label>Local: </label>
             <PopUpButton
               id="local"
               title={group}
@@ -157,8 +220,10 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
             />
             
           </div>
-          <div className="DataCategoria flex">
-            <label htmlFor="data">Data: </label>
+          <div className="Alinhamento">
+           <div className="DataCategoria flex">
+            <div className="flex">
+              <label htmlFor="data">Data: </label>
             <input
               onChange={(e) => {
                 setDate(e.target.value);
@@ -168,6 +233,7 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
               type="date"
               required
             />{" "}
+            </div>
             
             <div className="DCategoria flex">
               <label htmlFor="categoria">Categoria: </label>
@@ -189,6 +255,7 @@ export default function EditExpanse({ data, setData, setVariavel , valoresAntigo
               </select>
             </div>
           </div>
+         </div>
           <div className="TipoSubmit">
             
             

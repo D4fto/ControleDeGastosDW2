@@ -4,7 +4,6 @@ export default function bitcoin(setvalorBit){
     .then(response => response.json())
     .then(data => {
         setvalorBit(data.bitcoin.brl);
-        console.log(data.bitcoin.brl)
     })
     .catch(error => {
         console.error('Erro ao buscar o preço do Bitcoin:', error);

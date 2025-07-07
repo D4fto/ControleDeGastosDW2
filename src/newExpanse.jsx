@@ -25,6 +25,8 @@ function addIdToGroup(address, group, id, value) {
 export default function NewExpanse({ data, setData, setVariavel }) {
   const [group, setGroup] = useState("/");
   const [type, setType] = useState("fixo");
+  const [valorFormatado, setValorFormatado] = useState("R$ 0,00");
+
 
   useEffect(() => {
     setGroup("/");
@@ -46,7 +48,7 @@ export default function NewExpanse({ data, setData, setVariavel }) {
         group.substring(1, group.length - 1).split("/"),
         newData.groups[type],
         id,
-        parseInt(newExpanse.valor)
+        newExpanse.valor / 100
       );
     }
     setData(newData);
@@ -54,7 +56,7 @@ export default function NewExpanse({ data, setData, setVariavel }) {
   }
   return (
     <div className="NovaDespesa">
-      <h1>Editar Despesa</h1>
+      <h1>Nova Despesa</h1>
       <div className="Caixa">
         <form className="Form" onSubmit={send} action="">
           <label htmlFor="nome">Nome: </label>
@@ -68,18 +70,26 @@ export default function NewExpanse({ data, setData, setVariavel }) {
             placeholder="Nome"
             required
           />{" "}
-          
-          <label htmlFor="valor">valor: </label>
-          
-          <input className="DValor"
-            onChange={(e) => {
-              changeObject("valor", e.target.value);
-            }}
-            id="valor"
-            type="number"
-            placeholder="R$ 00.00"
-            required
-          />{" "}
+          <label htmlFor="valor">Valor:</label>
+          <input
+          className="DValor"
+          id="valor"
+          type="text"
+          inputMode="numeric"
+          placeholder="R$ 0,00"
+          value={valorFormatado}
+          onChange={(e) => {
+            const raw = e.target.value.replace(/\D/g, "");
+            const centavos = parseInt(raw || "0", 10);
+            const formatado = (centavos / 100).toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            });
+            setValorFormatado(formatado);
+            changeObject("valor", centavos); // armazena em centavos
+          }}
+          required
+        />
           
           <label htmlFor="descricao">Descrição: </label>
           
@@ -93,7 +103,7 @@ export default function NewExpanse({ data, setData, setVariavel }) {
           ></textarea>{" "}
           
           <div className="ParenteBarra"style={{ position: "relative"}}>
-            <label htmlFor="local">Local: </label>
+            <label>Local: </label>
             <PopUpButton
               id="local"
               title={group}
@@ -185,6 +195,7 @@ const newExpanse = {
   descricao: "",
   categoria: "Sem categoria",
   tipo: "",
+  active: true
 };
 function changeObject(atributo, valor) {
   newExpanse[atributo] = valor;

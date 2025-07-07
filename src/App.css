@@ -44,8 +44,11 @@ body,
 .MenuHorizontal_DD button {
   background-color: transparent;
   border: none;
+  font-size: 1rem;
 }
-
+button{
+  font-size: 1rem;
+}
 .Conteudo {
   display: flex;
   padding: 1.25rem;
@@ -127,6 +130,11 @@ body,
 .NomePreco {
   display: flex;
   justify-content: space-between;
+  >p{
+    max-width: 60%;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+  }
 }
 
 .Descricao {
@@ -282,6 +290,7 @@ main {
   background-color: #d9d9d9;
   padding: 15px;
   font-size: 1.5rem;
+  border-radius: 5px;
   
 }
 .Celular{
@@ -337,4 +346,9 @@ main {
 }
 .black{
   color: black;
+}
+.LapisLixeira>button{
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
 }
