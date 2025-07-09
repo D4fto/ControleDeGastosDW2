@@ -292,7 +292,6 @@ main {
   padding: 15px;
   font-size: 1.5rem;
   border-radius: 5px;
-
   animation: bitcoin 1s infinite alternate;
 }
 @keyframes bitcoin {
