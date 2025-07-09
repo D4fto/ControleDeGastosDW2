@@ -11,6 +11,7 @@ html {
 
 body,
 #root {
+  background-color: #ffe3e5;
   font-family: "Inria Sans", sans-serif;
   height: 100dvh;
   width: 100dvw;
@@ -27,7 +28,7 @@ body,
   border-bottom: .0625rem solid #d5d5d5;
   display: flex;
   justify-content: space-between;
-  background-color: #f8f8f8;
+  background-color: #ffa3ce;
   color: #4a4a4a;
 }
 
@@ -67,13 +68,13 @@ button{
 
 .arrowOpen {
   transition: transform 0.2s;
-  color: #d9d9d9;
+  color: #ffa3ce ;
   margin-left: .3125rem;
   cursor: pointer;
 }
 
 .ListaDespesas::-webkit-scrollbar {
-  background-color: #e6e6e6;
+  background-color: #fdd1b6;
   width: .625rem;
   border-top-right-radius: .3125rem;
   border-bottom-right-radius: .3125rem;
@@ -94,7 +95,7 @@ button{
   max-height: 100%;
   padding: .9375rem;
   padding-top: 0;
-  background-color: #e6e6e6;
+  background-color: #fdd1b6;
   border-radius: .3125rem;
 }
 
@@ -204,7 +205,7 @@ h1 {
 #DespesasTitulo {
   position: sticky;
   top: 0;
-  background-color: #e6e6e6;
+  background-color: #fdd1b6;
   padding-top: .9375rem;
   padding-bottom: .3125rem;
 }
@@ -213,7 +214,7 @@ button {
 }
 
 .Novo {
-  border: .0625rem solid #d9d9d9;
+  border: .0625rem solid #ffa3ce ;
   text-align: center;
   border-radius: .3125rem;
 }
@@ -259,12 +260,12 @@ button {
 }
 
 .Novo > h1 {
-  background-color: #d9d9d9;
+  background-color: #ffa3ce ;
   font-weight: 500;
 }
 
 .NetoDoNovo:not(:last-child) {
-  border-right: .0625rem solid #d9d9d9;
+  border-right: .0625rem solid #ffa3ce ;
 }
 
 .NetoDoNovo > button > i {
@@ -272,7 +273,7 @@ button {
 }
 
 .NetoDoNovo:hover {
-  background-color: #e6e6e6;
+  background-color: #fdd1b6;
 }
 
 main {
@@ -287,11 +288,20 @@ main {
 }
 
 .PrecoBitCoin{
-  background-color: #d9d9d9;
+  background-color: #ffa3ce ;
   padding: 15px;
   font-size: 1.5rem;
   border-radius: 5px;
-  
+  animation: bitcoin 1s infinite alternate;
+}
+@keyframes bitcoin {
+  0%{
+    background-color: rgb(248, 65, 172);
+  }
+  100%{
+    background-color: #ffa3ce ;
+  }
+
 }
 .Celular{
   border-radius: 5px;
@@ -307,7 +317,7 @@ main {
     }
   }
   .iframeContainer{
-    border: 1px solid #d9d9d9;
+    border: 1px solid #ffa3ce ;
     min-height: calc(100% - 50px);
     max-height: calc(100% - 50px);
     display: grid;
@@ -323,7 +333,7 @@ main {
   }
   .TopBar{
   justify-content: space-between;
-  background-color: #d9d9d9;
+  background-color: #ffa3ce ;
   padding: 5px;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
@@ -352,3 +362,9 @@ main {
   border: none;
   font-size: 1rem;
 }
+/* 
+.color1 { #ffa3ce };
+.color2 { #fdd1b6 };
+.color3 { #ffa3ce  };
+.color4 { #c7b6be };
+.color5 { #89abb4 }; */

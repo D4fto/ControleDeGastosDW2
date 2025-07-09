@@ -259,7 +259,7 @@ function App() {
                   <p className="PrecoBitCoin"><i className="bi bi-currency-bitcoin"></i> Preço do BitCoin brasileiro: R$ {valorBit}</p>
                   <div className="Celular">
                     <div className="TopBar flex">
-                      <h1>🔴🟡🟢</h1>
+                      <h1>💗</h1>
                       <i className={"bi bi-caret-down-fill black arrowOpen" + (celularOpen ? " flip-v" : "")} onClick={() => setCelularOpen(!celularOpen)}></i>
                     </div>
                     <div className={"iframeContainer" +  (celularOpen ? " Aberto" : "")}><iframe src="https://d4fto.github.io/todolist2/" frameBorder="0"></iframe></div>
