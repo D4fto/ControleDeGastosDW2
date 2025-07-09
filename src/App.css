@@ -292,12 +292,7 @@ main {
   padding: 15px;
   font-size: 1.5rem;
   border-radius: 5px;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  
-=======
-=======
->>>>>>> Stashed changes
+
   animation: bitcoin 1s infinite alternate;
 }
 @keyframes bitcoin {
@@ -307,7 +302,7 @@ main {
   100%{
     background-color: #ffa3ce ;
   }
->>>>>>> Stashed changes
+
 }
 .Celular{
   border-radius: 5px;
