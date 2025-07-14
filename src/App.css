@@ -11,7 +11,7 @@ html {
 
 body,
 #root {
-  background-color: #ffe3e5;
+  background-color: #fff;
   font-family: "Inria Sans", sans-serif;
   height: 100dvh;
   width: 100dvw;
@@ -28,7 +28,7 @@ body,
   border-bottom: .0625rem solid #d5d5d5;
   display: flex;
   justify-content: space-between;
-  background-color: #ffa3ce;
+  background-color: #d9d9d9;
   color: #4a4a4a;
 }
 
@@ -68,13 +68,13 @@ button{
 
 .arrowOpen {
   transition: transform 0.2s;
-  color: #ffa3ce ;
+  color: #d9d9d9 ;
   margin-left: .3125rem;
   cursor: pointer;
 }
 
 .ListaDespesas::-webkit-scrollbar {
-  background-color: #fdd1b6;
+  background-color: #d9d9d9;
   width: .625rem;
   border-top-right-radius: .3125rem;
   border-bottom-right-radius: .3125rem;
@@ -95,7 +95,7 @@ button{
   max-height: 100%;
   padding: .9375rem;
   padding-top: 0;
-  background-color: #fdd1b6;
+  background-color: #d9d9d9;
   border-radius: .3125rem;
 }
 
@@ -205,7 +205,7 @@ h1 {
 #DespesasTitulo {
   position: sticky;
   top: 0;
-  background-color: #fdd1b6;
+  background-color: #d9d9d9;
   padding-top: .9375rem;
   padding-bottom: .3125rem;
 }
@@ -214,7 +214,7 @@ button {
 }
 
 .Novo {
-  border: .0625rem solid #ffa3ce ;
+  border: .0625rem solid #d9d9d9 ;
   text-align: center;
   border-radius: .3125rem;
 }
@@ -260,12 +260,12 @@ button {
 }
 
 .Novo > h1 {
-  background-color: #ffa3ce ;
+  background-color: #d9d9d9 ;
   font-weight: 500;
 }
 
 .NetoDoNovo:not(:last-child) {
-  border-right: .0625rem solid #ffa3ce ;
+  border-right: .0625rem solid #d9d9d9 ;
 }
 
 .NetoDoNovo > button > i {
@@ -273,7 +273,7 @@ button {
 }
 
 .NetoDoNovo:hover {
-  background-color: #fdd1b6;
+  background-color: #d9d9d9;
 }
 
 main {
@@ -328,7 +328,7 @@ main {
     }
   }
   .iframeContainer{
-    border: 1px solid #ffa3ce ;
+    border: 1px solid #d9d9d9 ;
     min-height: calc(100% - 50px);
     max-height: calc(100% - 50px);
     display: grid;
@@ -344,7 +344,7 @@ main {
   }
   .TopBar{
   justify-content: space-between;
-  background-color: #ffa3ce ;
+  background-color: #d9d9d9 ;
   padding: 5px;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
