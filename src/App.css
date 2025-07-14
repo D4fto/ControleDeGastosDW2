@@ -374,3 +374,24 @@ main {
   font-size: 1rem;
 }
 
+.bola{
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: #FF0022;
+  border-radius: 100%;
+}
+.bola:first-child{
+  background-color: #011627;
+}
+.bola:last-child{
+  background-color: #41EAD4;
+}
+.bolas{
+  gap: .625rem;
+}
+.torto{
+  transform: rotate(.25deg);
+}
+.torto2{
+  transform: rotate(-.25deg);
+}
