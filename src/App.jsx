@@ -17,7 +17,7 @@ function limpaLocal() {
   localStorage.setItem("data2", "");
   localStorage.setItem("variavel", "")
 }
-// limpaLocal();
+limpaLocal();
 if (!localStorage.getItem("data2")) {
   initializeData();
 }
@@ -181,7 +181,7 @@ function updateDataStorage(name,data) {
 function App() {
   const [variavel, setvariavel] = useState(()=>JSON.parse(localStorage.getItem("variavel")));
   const [valorBit, setvalorBit] = useState(0);
-  const [celularOpen, setCelularOpen] = useState(false);
+  const [celularOpen, setCelularOpen] = useState(true);
   const [editingTask, setEditingTask] = useState({})
   const [data, setData] = useState(() =>
     JSON.parse(localStorage.getItem("data2"))
@@ -208,7 +208,7 @@ function App() {
   return (
     <>
       <nav className="MenuHorizontal">
-        <h1 className="Titulo">Investec</h1>
+        <h1 className="Titulo">Inve<span style={{color:"#fff022", textShadow:".0625rem .0625rem .125rem black"}}>$</span>tec</h1>
 
         <div className="MenuHorizontal_DD">
           
@@ -226,7 +226,7 @@ function App() {
             <>
               <div className="flex VoDoNovo">
                 <div className="PaiDoNovo">
-                  <div className="Novo">
+                  <div className="Novo  ">
                     <h1>Novo</h1>
                     <div className="FilhoDoNovo">
                       <div className="NetoDoNovo">
@@ -257,12 +257,18 @@ function App() {
                 </div>
                 <div className="FilhoDoVoDoNovo">
                   <p className="PrecoBitCoin"><i className="bi bi-currency-bitcoin"></i> Preço do BitCoin brasileiro: R$ {valorBit}</p>
-                  <div className="Celular">
+                  <div className="Celular ">
                     <div className="TopBar flex">
-                      <h1>💗</h1>
+                      <h1>
+                        <div className="flex bolas">
+                          <div className="bola">ㅤ</div>
+                          <div className="bola">ㅤ</div>
+                          <div className="bola">ㅤ</div>
+                        </div>
+                      </h1>
                       <i className={"bi bi-caret-down-fill black arrowOpen" + (celularOpen ? " flip-v" : "")} onClick={() => setCelularOpen(!celularOpen)}></i>
                     </div>
-                    <div className={"iframeContainer" +  (celularOpen ? " Aberto" : "")}><iframe src="https://d4fto.github.io/todolist2/" frameBorder="0"></iframe></div>
+                    <div className={"iframeContainer " +  (celularOpen ? " Aberto" : "")}><iframe src="https://d4fto.github.io/todolist2/" frameBorder="0"></iframe></div>
                   </div>
                 </div>
               </div>

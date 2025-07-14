@@ -69,7 +69,7 @@ export default function CategoryList({data, setData}){
                     return(
                         <div key={i}>
                             <div className="flex Categoria">
-                                <h4>{e} - {(values[e]/100).toLocaleString("pt-BR", {style: "currency",currency: "BRL",minimumFractionDigits: 2})}{e!="Sem categoria"?<i onClick={(no)=>excluiCategoria(e)} className="bi bi-trash3-fill"></i>:<></>}</h4>
+                                <h4>{e} - {(values[e]/100).toLocaleString("pt-BR", {style: "currency",currency: "BRL",minimumFractionDigits: 2})}{e!="Sem categoria"?<i onClick={(no)=>excluiCategoria(e)} className="bi bi-trash3-fill torto"></i>:<></>}</h4>
                                 <i className={"bi bi-caret-down-fill"+(isOpen?" Aberto":"")} onClick={() => toggleCategoria(e)}></i>
                             </div>
                             <div className={"UlCategoria"+(isOpen?" Aberto":"")}>

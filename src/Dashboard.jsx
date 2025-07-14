@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect} from "react";
 import SaveMonth from "./SaveMonth"
 import "./Dashboard.css"
+
 function parseDate(str) {
     const [month, , year] = str.split('/');
     return new Date(`${year}-${String(parseInt(month)+1).padStart(2, '0')}`);
@@ -29,6 +30,7 @@ export default function Dashboard({data, setData}){
     const [expansesDate, setExpansesDate] = useState(`${actualDate.getMonth()}/01/${actualDate.getFullYear()}`)
     const [yearDate, setYearDate] = useState(actualDate.getFullYear())
     const [totalDate, setTotalDate] = useState(`${actualDate.getMonth()}/01/${actualDate.getFullYear()}`)
+    const [color, setColor] = useState(true)
     const piechartRef = useRef()
     const barchartRef = useRef()
     const linechartRef = useRef()
@@ -48,6 +50,10 @@ export default function Dashboard({data, setData}){
             expanses: []
         }
         setData(newData)
+    }
+
+    function switchColor(){
+
     }
 
     useEffect(()=>{
@@ -87,7 +93,7 @@ export default function Dashboard({data, setData}){
         if (google.visualization && google.visualization.PieChart) {
             drawChart();
         }
-    }, [categoriesDate, data]);
+    }, [categoriesDate, data, color]);
     useEffect(() => {
         if(data.storage[expansesDate]){
 
@@ -95,12 +101,12 @@ export default function Dashboard({data, setData}){
                 drawBarChart();
             }
         }
-    }, [expansesDate, data]);
+    }, [expansesDate, data, color]);
     useEffect(() => {
         if (google.visualization && google.visualization.LineChart && filterByYear().length>0) {
             drawLineChart();
         }
-    }, [yearDate, data]);
+    }, [yearDate, data, color]);
     function drawChart() {
         let array = Object.entries(data.storage[categoriesDate].categoryMap)
         array.map((x)=>{
@@ -115,7 +121,7 @@ export default function Dashboard({data, setData}){
             title: 'Gasto por categoria',
             legend: {position: "bottom"},
             is3D: true,
-            colors: ["#A4A4A4", "878D96", "2F2F2F"],
+            colors: color?["#41EAD4", "#FF0022", "#011627"]:["#A4A4A4", "878D96", "2F2F2F"],
             
         };
 
@@ -138,6 +144,9 @@ export default function Dashboard({data, setData}){
             x[1]=x[1]/100
         })
         for (let i = 0; i < array.length; i++) {
+            color?
+            array[i].push(i%2?"#011627":"#FF0022")
+            :
             array[i].push(i%2?"#d9d9d9":"#9c9c9c")
         }
         array.unshift(["Despesa", "valor", {role: "style"}])
@@ -152,7 +161,7 @@ export default function Dashboard({data, setData}){
                 duration: 1000,
                 easing: "out",
             },
-            colors: ["#d9d9d9"]
+            colors: ["#011627"]
         };
 
         let chart = new google.visualization.ColumnChart(barchartRef.current);
@@ -189,7 +198,7 @@ export default function Dashboard({data, setData}){
                 duration: 1000,
                 easing: "out"
             },
-            colors: ["#9c9c9c"]
+            colors: color?["#41EAD4"]:["#9c9c9c"]
 
         };
 
@@ -217,6 +226,7 @@ export default function Dashboard({data, setData}){
                 <div className="DashboardButtons flex">
                     <SaveMonth data={data} setData={setData}/>
                     <button onClick={limparMes}>LIMPAR MÊS</button>
+                    <button onClick={()=>{setColor(!color)}} ><img src={color?"/colors.svg":"/nocolors.svg"} className="ColorIcon"></img></button>
                 </div>
                 <div className="Total">
                     <input

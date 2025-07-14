@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from "react"
 import "./PopUp.css"
 import "./ChooseGroup.css"
+import PopUpButton from "./PopUpButton"
+import NewGroup from "./NewGroup"
 
-export default function ChooseGroup({data, setControl, type, group, setGroup, above, limit}){
+export default function ChooseGroup({data, setData, setControl, type, group, setGroup, above, limit, withNew}){
     const reference = useRef()
     const [preview, setPreview] = useState(group)
 
@@ -42,6 +44,9 @@ export default function ChooseGroup({data, setControl, type, group, setGroup, ab
         </div>
         <div className="flex ChooseBottom">
             <button type="button">{preview}</button>
+            <div className="novoGrupinho">
+                {withNew && <PopUpButton title={"+"} PopUp={NewGroup} props={{ data: data, setData: setData }} portal={true}/>}
+            </div>
             <button type="button" onClick={()=>{
                 setGroup(preview)
                 setControl(false)

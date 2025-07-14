@@ -288,21 +288,32 @@ main {
 }
 
 .PrecoBitCoin{
-  background-color: #ffa3ce ;
+  background-color: #00d26a;
   padding: 15px;
   font-size: 1.5rem;
   border-radius: 5px;
-  animation: bitcoin 1s infinite alternate;
+
+  border: #011627 5px dashed;
+  
+  animation: bitcoin 1s infinite alternate linear; 
 }
 @keyframes bitcoin {
   0%{
-    background-color: rgb(248, 65, 172);
+    border: #011627 5px dashed;
+    background-color: #d9d9d9;
+    
+  }
+  50%{
+    border: #011627 5px dotted;
+    
   }
   100%{
-    background-color: #ffa3ce ;
-  }
+    border: #011627 5px solid;
+    background-color: #fad532;
 
+  }
 }
+
 .Celular{
   border-radius: 5px;
   height: 100%;
@@ -362,9 +373,25 @@ main {
   border: none;
   font-size: 1rem;
 }
-/* 
-.color1 { #ffa3ce };
-.color2 { #fdd1b6 };
-.color3 { #ffa3ce  };
-.color4 { #c7b6be };
-.color5 { #89abb4 }; */
+
+.bola{
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: #FF0022;
+  border-radius: 100%;
+}
+.bola:first-child{
+  background-color: #011627;
+}
+.bola:last-child{
+  background-color: #41EAD4;
+}
+.bolas{
+  gap: .625rem;
+}
+.torto{
+  transform: rotate(.25deg);
+}
+.torto2{
+  transform: rotate(-.25deg);
+}

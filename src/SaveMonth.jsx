@@ -7,11 +7,15 @@ export default function SaveMonth({data, setData}){
         let total = 0
 
         for (const element of newData.categories) {
+            
             categoryHashMap[element]=0
         }
 
         for (const key in newData.expanses.fixo) {
             if (key!="maxId") {
+                if(!newData.expanses.fixo[key].active){
+                    continue
+                }
                 const element = newData.expanses.fixo[key];
                 expanses.push([element.nome, parseInt(element.valor)])
                 categoryHashMap[element.categoria]+=parseInt(element.valor)
@@ -20,6 +24,9 @@ export default function SaveMonth({data, setData}){
         }
         for (const key in newData.expanses.variavel) {
             if (key!="maxId") {
+                if(!newData.expanses.variavel[key].active){
+                    continue
+                }
                 const element = newData.expanses.variavel[key];
                 expanses.push([element.nome, parseInt(element.valor)])
                 categoryHashMap[element.categoria]+=parseInt(element.valor)

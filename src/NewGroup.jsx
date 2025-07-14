@@ -64,8 +64,25 @@ export default function NewGroup({ data, setData, setControl }) {
     const newData = { ...data };
 
     if (group === "/") {
+      let x = true
+      let modifier = 0
+
+      while(x){
+        let y = false
+        for (const element of newData.groups[type]) {
+          if (element.nome === nome + (modifier > 0 ? modifier : "")) {
+            y = true;
+            modifier++;
+            break
+          }
+        }
+        if(!y){
+          x=false
+        }
+      }
+      
       newData.groups[type].push({
-        nome: nome,
+        nome: nome + (modifier > 0 ? modifier : ""),
         descricao: descricao,
         valor: 0,
         children: {

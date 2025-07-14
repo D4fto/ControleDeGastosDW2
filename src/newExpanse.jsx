@@ -34,6 +34,9 @@ export default function NewExpanse({ data, setData, setVariavel }) {
 
   function send(event) {
     event.preventDefault();
+    if(!newExpanse.data || !newExpanse.nome || !newExpanse.valor){
+      return
+    }
     const newData = { ...data };
 
     let id = newData.expanses[type].maxId + 1;
@@ -48,7 +51,7 @@ export default function NewExpanse({ data, setData, setVariavel }) {
         group.substring(1, group.length - 1).split("/"),
         newData.groups[type],
         id,
-        newExpanse.valor / 100
+        newExpanse.valor
       );
     }
     setData(newData);
@@ -115,6 +118,7 @@ export default function NewExpanse({ data, setData, setVariavel }) {
                 type: type,
                 group: group,
                 setGroup: setGroup,
+                withNew: true
               }}
             />
             

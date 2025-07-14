@@ -15,7 +15,14 @@ export default function NewCategory({data, setData, setControl}){
         <h1>Nova Categoria</h1>
         <form onSubmit={adicionarCategoria} className="NovaCategoriaForm">
            <div className="Epaco">
-             <input className="InputNovacategoria" type="text" name="category" id="category" onChange={(e)=>{categoria = e.target.value}} placeholder="Nome da categoria" required/>
+             <input className="InputNovacategoria" type="text" name="category" id="category" onChange={(e)=>{
+                if(data.categories.includes(e.target.value)){
+                    e.target.setCustomValidity("Categoria já existe")
+                    return
+                }
+                e.target.setCustomValidity("")
+                categoria = e.target.value
+                }} placeholder="Nome da categoria" required/>
             <button className="ButtonNovacategoria" >+</button>
            </div>
         </form>

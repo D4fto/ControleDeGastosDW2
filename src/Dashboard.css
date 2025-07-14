@@ -49,6 +49,10 @@
         background-color: transparent;
         border-color: black;
     }
+    >button:last-child{
+        width: 50%;
+        
+    }
 }
 .Total{
     border-radius: .3125rem;
@@ -83,4 +87,8 @@
 }
 .RelacaoMesAnterior.Abaixou{
     color: #00c91b;
+}
+
+.ColorIcon{
+    height: 1rem;
 }
