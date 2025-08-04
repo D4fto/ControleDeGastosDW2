@@ -226,7 +226,7 @@ export default function Dashboard({data, setData}){
                 <div className="DashboardButtons flex">
                     <SaveMonth data={data} setData={setData}/>
                     <button onClick={limparMes}>LIMPAR MÊS</button>
-                    <button onClick={()=>{setColor(!color)}} ><img src={color?"/colors.svg":"/nocolors.svg"} className="ColorIcon"></img></button>
+                    <button onClick={()=>{setColor(!color)}} ><img src={color?"./colors.svg":"./nocolors.svg"} className="ColorIcon"></img></button>
                 </div>
                 <div className="Total">
                     <input
